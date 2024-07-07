@@ -1,0 +1,49 @@
+.create-container {
+  width: 90%;
+  height: 85vh;
+  background-color: white;
+  margin: 0 11px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.save-button {
+  background-color: #3880ce;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 50%;
+}
+
+.end-aligned {
+  margin-left: auto !important;
+}
+
+@media (max-width: 768px) {
+  .create-container {
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    margin-bottom: 20px;
+    transform: translate(0%, 7%);
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .save-button {
+    position: absolute;
+    bottom: -475px;
+    width: 80%;
+    text-align: center;
+    margin-right: 35px;
+  }
+  
+.end-aligned {
+  margin-top: -13px;
+}
+}

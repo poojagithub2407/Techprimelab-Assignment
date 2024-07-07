@@ -1,0 +1,26 @@
+.project-list-container {
+     width: 90%; 
+     height: 85vh;
+     background-color: white;
+     transform: translate(7%, 2%);
+     margin: 0 11px; 
+     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+     border-radius: 20px;
+     overflow: hidden; 
+   }
+
+   .table-function{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+   }
+   
+   @media (max-width: 768px) {
+     .project-list-container {
+       width:90%; 
+       height: 78vh;
+       margin: 0 11px; 
+       transform: translate(0%, 7%);
+       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+     }
+}

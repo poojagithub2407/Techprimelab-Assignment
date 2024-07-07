@@ -1,0 +1,115 @@
+.sidebar {
+  width: 76px;
+  height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-list img {
+  width: 35px;
+  cursor: pointer;
+}
+
+.sidebar-logout {
+  width: 30px;
+  height: auto;
+}
+
+.dash-img,
+.create-img,
+.project-img {
+  width: 45px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  padding-left: 10px;
+}
+
+.dash-img:hover,
+.create-img:hover,
+.project-img:hover,
+.dash-img.active,
+.create-img.active,
+.project-img.active {
+  border-left: 4px solid #0047ab;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: 76px;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    bottom: 0;
+    top: auto;
+  }
+
+  .main-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+  }
+
+  .sidebar-list {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .dash-img,
+  .create-img,
+  .project-img {
+    margin-top: 20px;
+    cursor: pointer;
+    border-left: none;
+    border-bottom: 4px solid transparent;
+  }
+
+  .dash-img:hover,
+  .create-img:hover,
+  .project-img:hover,
+  .dash-img.active,
+  .create-img.active,
+  .project-img.active {
+    border-left: none;
+    border-bottom: 4px solid #0047ab;
+    padding-bottom: 20px;
+  }
+  .sidebar-list img {
+    width: 34px;
+    margin: 0 10px; /* Adjust margin if needed */
+  }
+
+  .sidebar-logout {
+    display: none;
+  }
+}
