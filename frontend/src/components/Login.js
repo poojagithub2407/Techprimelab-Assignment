@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../styles/Login.css';
-
 import loginBg from '../assets/images/login-bg-1.svg';
 import logo from '../assets/images/Logo.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState({});
+    const [loginMessage, setLoginMessage] = useState('');
+
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -19,28 +23,55 @@ const Login = () => {
 
         if (!email.trim()) {
             errors.email = 'Email is required';
-        } else {
-            errors.email = '';
         }
 
         if (!password.trim()) {
             errors.password = 'Password is required';
-        } else {
-            errors.password = '';
         }
 
         setErrors(errors);
-        return Object.keys(errors).length === 0;
+        return Object.values(errors).every(error => error === '');
+    };
+
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('http://localhost:5000/api/users/login', {
+                email,
+                password
+            });
+
+            const { data } = response;
+            if (data.result === 'no user found') {
+                setLoginMessage('Invalid Credentials.');
+                resetForm(); // Reset form when invalid credentials are provided
+            } else {
+                console.log('Login successful:', data);
+
+                navigate('/'); // Navigating to the home page which is a protected route
+
+                setLoginMessage('');
+                resetForm();
+            }
+        } catch (error) {
+            console.error('Login error:', error);
+            setLoginMessage('');
+            resetForm(); // Optionally reset form on error
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            // Proceed with login logic
-            console.log('Form is valid');
+            handleLogin();
         } else {
             console.log('Form is invalid');
         }
+    };
+
+    const resetForm = () => {
+        setEmail('');
+        setPassword('');
+        setErrors({});
     };
 
     return (
@@ -79,11 +110,12 @@ const Login = () => {
                                     <i className={showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'}></i>
                                 </div>
                             </div>
-                            {errors.password && <div className="invalid">{errors.password}</div>}
+                            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                             <div className='forgot-password'>Forgot password?</div>
                         </div>
                         <div className='form-group mt-4'>
                             <button type="submit" className='login-button'>Login</button>
+                            {loginMessage && <div className="text-danger mt-2">{loginMessage}</div>}
                         </div>
                     </form>
                 </div>

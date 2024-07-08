@@ -37,13 +37,18 @@
 
   .save-button {
     position: absolute;
-    bottom: -475px;
+    bottom: -505px;
     width: 80%;
     text-align: center;
     margin-right: 35px;
+    cursor: pointer;
   }
-  
-.end-aligned {
-  margin-top: -13px;
-}
+
+  .end-aligned {
+    margin-top: -13px;
+  }
+
+  .text-danger {
+    margin-top: -25px;
+  }
 }

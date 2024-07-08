@@ -1,26 +1,133 @@
-.project-list-container {
-     width: 90%; 
-     height: 85vh;
-     background-color: white;
-     transform: translate(7%, 2%);
-     margin: 0 11px; 
-     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-     border-radius: 20px;
-     overflow: hidden; 
-   }
-
-   .table-function{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-   }
-   
-   @media (max-width: 768px) {
-     .project-list-container {
-       width:90%; 
-       height: 78vh;
-       margin: 0 11px; 
-       transform: translate(0%, 7%);
-       box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
-     }
+.input-group {
+  position: relative;
+  max-width: 100px;
+  margin-bottom: 10px;
 }
+
+.input-group .form-control {
+  border: none;
+  border-bottom: 1px solid gray;
+  border-radius: 0;
+}
+
+.input-group .form-control:focus {
+  box-shadow: none;
+  border-color: gray;
+  background: none;
+  cursor: pointer;
+}
+
+.input-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: bold;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody tr:hover {
+  background-color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 12px;
+  }
+
+  .project-conatainer {
+    height: 83vh;
+    transform: translate(0%, 2%);
+    overflow-y: auto;
+    position: relative;
+  }
+
+  .sort-by-container{
+    margin-bottom: 18px;
+    font-size: 0.9rem;
+
+  }
+
+  .form-control{
+    margin-right: 8px;
+  }
+
+ 
+}
+
+/* pagination */
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination .page-item {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.pagination .page-link {
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  text-align: center;
+  padding: 0;
+  font-size: 16px;
+  border: 1px solid #ccc; /* Add border for visibility */
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+  border: 1px solid #007bff; /* Match active button style */
+}
+
+.circle-button {
+  border-radius: 50%;
+  width: 36px; /* Adjust size as needed */
+  height: 36px; /* Adjust size as needed */
+  text-align: center;
+  padding: 0;
+  font-size: 18px;
+}
+
+.btn-status{
+  width: 100%;
+  border: 2px solid #0a529f;
+  color: #0a529f;
+  background-color:white;
+  font-size: 1.2rem;
+  border-radius: 20px;
+}
+
+.btn-status:hover{
+  background-color: #0a529f;
+  color: #ffff;
+}
+
