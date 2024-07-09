@@ -1,4 +1,3 @@
-// ProjectTable.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MobileProjectCard from './MobileProjectCard';
@@ -23,23 +22,19 @@ const ProjectTable = ({ projects, headers }) => {
         };
     }, []);
 
-    // Function to update project status optimistically
     const updateStatus = async (id, status) => {
         try {
-            // Optimistic update: Update locally first
             const updatedProjects = localProjects.map(project => {
                 if (project._id === id) {
-                    return { ...project, Status: status }; // Update status locally
+                    return { ...project, Status: status }; 
                 }
                 return project;
             });
-            setLocalProjects(updatedProjects); // Update local state
+            setLocalProjects(updatedProjects); 
 
-            // Send request to update status on the server
             await axios.put(`http://localhost:5000/api/projects/projects/${id}/status`, { status });
         } catch (error) {
             console.error('Error updating status:', error);
-            // Revert local update if there's an error
             const revertedProjects = localProjects.map(project => {
                 if (project._id === id) {
                     return { ...project, Status: project.Status }; // Revert to original status
@@ -66,7 +61,7 @@ const ProjectTable = ({ projects, headers }) => {
                         {headers && headers.map((header, index) => (
                             <th key={index}>{header}</th>
                         ))}
-                        <th>Actions</th> {/* New column for actions */}
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>

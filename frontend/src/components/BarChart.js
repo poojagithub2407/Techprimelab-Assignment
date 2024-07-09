@@ -27,15 +27,15 @@ const BarChart = () => {
         label: 'Total Projects',
         backgroundColor: '#0047ab',
         data: [],
-        barPercentage: 0.4, // Default for mobile view
-        categoryPercentage: 0.6, // Default for mobile view
+        barPercentage: 0.4, 
+        categoryPercentage: 0.6, 
       },
       {
         label: 'Closed Projects',
         backgroundColor: '#04942b',
         data: [],
-        barPercentage: 0.4, // Default for mobile view
-        categoryPercentage: 0.6, // Default for mobile view
+        barPercentage: 0.4,
+        categoryPercentage: 0.6, 
       },
     ],
   });
@@ -74,8 +74,8 @@ const BarChart = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth <= 768; // Adjust breakpoint as needed
-      options.maintainAspectRatio = !isMobile; // Adjust maintainAspectRatio based on screen size
+      const isMobile = window.innerWidth <= 768; 
+      options.maintainAspectRatio = !isMobile; 
     };
 
     handleResize();
@@ -104,11 +104,11 @@ const BarChart = () => {
           labels: labels,
           datasets: [
             {
-              ...prevData.datasets[0], // Total Projects dataset
+              ...prevData.datasets[0],
               data: totalProjects,
             },
             {
-              ...prevData.datasets[1], // Closed Projects dataset
+              ...prevData.datasets[1], 
               data: closedProjects,
             },
           ],

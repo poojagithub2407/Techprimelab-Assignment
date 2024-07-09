@@ -33,7 +33,6 @@ const Dashboard = () => {
         });
       } catch (error) {
         console.error('Error fetching project counts:', error);
-        // Handle error fetching data
       }
     };
 
@@ -43,32 +42,32 @@ const Dashboard = () => {
   return (
     <div className="container my-3">
       <div className="d-flex justify-content-between">
-        <div className="box mx-2">
-          <div>
+        <div className="box mx-2  p-3">
+          <div style={{ fontWeight: 'bold' }}>
             <p>Total Projects</p>
             <h4>{counts.totalProjects}</h4>
           </div>
         </div>
-        <div className="box mx-2">
-          <div>
+        <div className="box mx-2  p-3">
+          <div style={{ fontWeight: 'bold' }}>
             <p>Closed</p>
             <h4>{counts.closedProjects}</h4>
           </div>
         </div>
-        <div className="box mx-2">
-          <div>
+        <div className="box mx-2  p-3">
+          <div style={{ fontWeight: 'bold' }}>
             <p>Running</p>
             <h4>{counts.runningProjects}</h4>
           </div>
         </div>
-        <div className="box mx-2">
-          <div>
+        <div className="box mx-2  p-3">
+          <div style={{ fontWeight: 'bold' }}>
             <p>Overdue Running</p>
             <h4>{counts.overdueRunningProjects}</h4>
           </div>
         </div>
-        <div className="box mx-2">
-          <div>
+        <div className="box mx-2 p-3">
+          <div style={{ fontWeight: 'bold' }}>
             <p>Cancelled</p>
             <h4>{counts.cancelledProjects}</h4>
           </div>

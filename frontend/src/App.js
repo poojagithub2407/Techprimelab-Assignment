@@ -1,71 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Sidebar from './layout/Sidebar';
-import Dashboard from './components/Dashboard';
-import ProjectList from './pages/ProjectList';
-import CreateProject from './components/CreateProject';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/AuthContext';
+import ProtectedRoute from './context/ProtectedRoute';
 import Login from './components/Login';
-import Navbar from './layout/Navbar';
+import Dashboard from './components/Dashboard';
+import CreateProject from './components/CreateProject';
+import ProjectList from './pages/ProjectList';
+import Sidebar from './layout/Sidebar';
 
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  return (
+    <AuthProvider>
+      <Router>
+        <Main />
+      </Router>
+    </AuthProvider>
+  );
+};
 
-  useEffect(() => {
-    // Check if token exists in localStorage on initial load
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
-  }, []);
-
-  const handleLogin = (token) => {
-    // Store token in localStorage
-    localStorage.setItem('token', token);
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    // Remove token from localStorage
-    localStorage.removeItem('token');
-    setIsAuthenticated(false);
-  };
+const Main = () => {
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
-    <Router>
+    <>
       {isAuthenticated && <Sidebar />}
-      {isAuthenticated && <Navbar onLogout={handleLogout} />}
-
       <Routes>
-        {/* Dashboard */}
-        <Route
-          path="/"
-          element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" replace />}
-        />
-
-        {/* Project List */}
-        <Route
-          path="/project-list"
-          element={isAuthenticated ? <ProjectList /> : <Navigate to="/login" replace />}
-        />
-
-        {/* Create Project */}
-        <Route
-          path="/create-project"
-          element={isAuthenticated ? <CreateProject /> : <Navigate to="/login" replace />}
-        />
-
-        {/* Login */}
-        <Route
-          path="/login"
-          element={!isAuthenticated ? <Login onLogin={handleLogin} /> : <Navigate to="/" replace />}
-        />
-
-        {/* Default Redirect */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/create-project" element={<ProtectedRoute><CreateProject /></ProtectedRoute>} />
+        <Route path="/project-list" element={<ProtectedRoute><ProjectList /></ProtectedRoute>} />
       </Routes>
-    </Router>
+    </>
   );
 };
 

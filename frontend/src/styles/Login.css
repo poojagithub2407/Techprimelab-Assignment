@@ -73,6 +73,17 @@
   background-color: #0056b3;
 }
 
+.form-control.is-invalid {
+  border: 1px solid red; /* Red border for invalid state */
+  background-color: #ffe6e6; /* Light red background for invalid state */
+}
+
+.invalid-feedback {
+  display: block !important;
+  font-size: 0.9rem; 
+  margin-top: 0.2rem;
+}
+
 /* Input group styling */
 .input-group {
   position: relative;
@@ -86,9 +97,8 @@
   cursor: pointer;
 }
 
-/* Adjustments for input fields */
 .input-field {
-  padding-right: 30px; /* Add space for input icon */
+  padding-right: 30px;
 }
 
 .input-field {

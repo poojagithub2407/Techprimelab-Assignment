@@ -1,4 +1,3 @@
-// src/controllers/authController.js
 const { generateToken } = require('../utils/jwtUtils');
 const User = require('../models/User');
 

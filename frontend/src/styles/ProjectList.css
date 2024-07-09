@@ -50,7 +50,7 @@ input-groups {
 }
 
 .table th {
-  background-color: #f8f9fa;
+  background-color: #7199c1;
   color: #495057;
   font-weight: bold;
 }
@@ -64,15 +64,12 @@ input-groups {
 }
 
 @media (max-width: 768px) {
-  .table th,
-  .table td {
-    font-size: 12px;
-  }
+  
 
   .project-conatainer {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    height: 70vh;
     margin-bottom: 20px;
     transform: translate(0%, 7%);
     overflow-y: auto;
@@ -110,20 +107,20 @@ input-groups {
   text-align: center;
   padding: 0;
   font-size: 16px;
-  border: 1px solid #ccc; /* Add border for visibility */
+  border: 1px solid #ccc; 
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: #2970bb;
+  border-color: #2676cc;
   color: #fff;
-  border: 1px solid #007bff; /* Match active button style */
+  border: 1px solid #007bff; 
 }
 
 .circle-button {
   border-radius: 50%;
-  width: 36px; /* Adjust size as needed */
-  height: 36px; /* Adjust size as needed */
+  width: 36px; 
+  height: 36px; 
   text-align: center;
   padding: 0;
   font-size: 18px;

@@ -1,23 +1,25 @@
 .nav-container {
      position: relative;
-     width: calc(100% - 76px); /* Adjust margin left according to sidebar width */
-     height: 80px; /* Adjust height as needed */
+     width: calc(100% - 76px); 
+     height: 80px; 
      display: flex;
      align-items: center;
      justify-content: space-between;
      padding: 0 20px;
-     margin-left: 76px; /* Adjust margin left according to sidebar width */
+     margin-left: 76px; 
    }
    
    .header-img {
      position: absolute;
      top: 0;
      left: 0;
-     width: 100%; /* Ensure the image takes up full width */
-     height: auto; /* Adjust height as needed */
+     width: 100%; 
+     height: auto; 
      object-fit: cover;
      z-index: -1;
    }
+
+   
    
    .nav-list {
      display: flex;
@@ -44,8 +46,8 @@
    
    .logout-container {
      position: absolute;
-     bottom: 10px; /* Adjust vertical position as needed */
-     right: 10px; /* Adjust horizontal position as needed */
+     bottom: 10px; 
+     right: 10px; 
      z-index: 2;
    }
    
@@ -62,7 +64,8 @@
    
      .header-img {
        width: 126%;
-       height: auto; /* Ensure the image adjusts height proportionally */
+       height: auto; 
+
        object-fit: cover;
        top: 0;
        left: 0;

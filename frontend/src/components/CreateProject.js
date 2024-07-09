@@ -66,7 +66,6 @@ const CreateProject = () => {
 
   return (
     <div className='container create-container'>
-      <h2>Create New Project</h2>
       <form onSubmit={handleSubmit}>
         <div className='row mt-sm-0'>
           <div className='col-md-8 col-sm-2 mt-5'>

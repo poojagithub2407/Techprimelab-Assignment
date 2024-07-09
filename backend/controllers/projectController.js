@@ -1,6 +1,5 @@
 const Project = require('../models/Project');
 
-// Create a new project
 const createProject = async (req, res) => {
     try {
         const { Projecttheme, Reason, Type, Division, Category, Priority, Department, Startdate, Enddate, Location } = req.body;
@@ -26,7 +25,6 @@ const createProject = async (req, res) => {
     }
 };
 
-// Get all projects with optional search, sort, and pagination functionality
 const getAllProjects = async (req, res) => {
     try {
         const { Projecttheme, Reason, Type, Division, Category, Priority, Department, Startdate, Enddate, Location, sortBy, sortOrder, page = 1, limit = 10 } = req.query;
@@ -44,13 +42,11 @@ const getAllProjects = async (req, res) => {
         if (Startdate) filter.Startdate = { $gte: new Date(Startdate) };
         if (Enddate) filter.Enddate = { $lte: new Date(Enddate) };
 
-        // Define the sorting criteria
         let sortCriteria = {};
         if (sortBy) {
             sortCriteria[sortBy] = sortOrder === 'desc' ? -1 : 1;
         }
 
-        // Pagination logic
         const skip = (page - 1) * limit;
         const totalDocuments = await Project.countDocuments(filter);
         const projects = await Project.find(filter).sort(sortCriteria).skip(skip).limit(parseInt(limit));
@@ -62,7 +58,6 @@ const getAllProjects = async (req, res) => {
     }
 };
 
-// Update project status
 const updateProjectStatus = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
@@ -85,7 +80,6 @@ const updateProjectStatus = async (req, res) => {
     }
 };
 
-// Count total projects
 const countTotalProjects = async (req, res) => {
     try {
         const totalProjects = await Project.countDocuments();
@@ -96,7 +90,6 @@ const countTotalProjects = async (req, res) => {
     }
 };
 
-// Count total projects with status Closed
 const countClosedProjects = async (req, res) => {
     try {
         const closedProjects = await Project.countDocuments({ Status: 'Closed' });
@@ -107,7 +100,6 @@ const countClosedProjects = async (req, res) => {
     }
 };
 
-// Count total projects with status Running
 const countRunningProjects = async (req, res) => {
     try {
         const runningProjects = await Project.countDocuments({ Status: 'Running' });
@@ -118,7 +110,6 @@ const countRunningProjects = async (req, res) => {
     }
 };
 
-// Count total projects where status is Running and end date is less than today's date
 const countOverdueRunningProjects = async (req, res) => {
     try {
         const today = new Date();
@@ -133,7 +124,6 @@ const countOverdueRunningProjects = async (req, res) => {
     }
 };
 
-// Count total projects with status Cancelled
 const countCancelledProjects = async (req, res) => {
     try {
         const cancelledProjects = await Project.countDocuments({ Status: 'Cancelled' });
@@ -144,7 +134,6 @@ const countCancelledProjects = async (req, res) => {
     }
 };
 
-// Chart project counts by department
 const chartProject = async (req, res) => {
     try {
         const departments = ['Finance', 'Strategy', 'Quality', 'Maintenance']; // Example departments

@@ -8,7 +8,7 @@ const SortBySelect = ({ field, handleSortChange, headers }) => (
                 className="form-select"
                 value={field}
                 onChange={handleSortChange}
-                style={{ border: 'none' }} // Remove border of select
+                style={{ border: 'none' }} 
             >
                 <option value="">Select Field</option>
                 {headers.map((header, index) => (

@@ -50,6 +50,7 @@
   padding-left: 10px;
 }
 
+
 .dash-img:hover,
 .create-img:hover,
 .project-img:hover,
@@ -60,7 +61,7 @@
 }
 
 .create-project-active-border {
-  border-bottom: 2px solid #000; /* Adjust the color as needed */
+  border-bottom: 2px solid #000; 
   margin-bottom: 20px;
 }
 
@@ -74,7 +75,7 @@
     padding: 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     position: fixed;
-    bottom: 0;
+    bottom: 44px;
     top: auto;
   }
 
@@ -82,7 +83,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 120px;
+    gap: 57px;
   }
 
   .sidebar-list {
@@ -111,7 +112,7 @@
   }
   .sidebar-list img {
     width: 34px;
-    margin: 0 10px; /* Adjust margin if needed */
+    margin: 0 10px; 
   }
 
   .sidebar-logout {

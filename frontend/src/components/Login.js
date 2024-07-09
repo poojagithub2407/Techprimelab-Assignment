@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import '../styles/Login.css';
 import loginBg from '../assets/images/login-bg-1.svg';
 import logo from '../assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext'; // Import the Auth context
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -11,8 +12,8 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState({});
     const [loginMessage, setLoginMessage] = useState('');
-
     const navigate = useNavigate();
+    const { login } = useContext(AuthContext); // Use the login function from the context
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -43,26 +44,28 @@ const Login = () => {
             const { data } = response;
             if (data.result === 'no user found') {
                 setLoginMessage('Invalid Credentials.');
-                resetForm(); // Reset form when invalid credentials are provided
+                resetForm();
             } else {
                 console.log('Login successful:', data);
+                login(data.token);
 
-                navigate('/'); // Navigating to the home page which is a protected route
+                navigate('/');
 
                 setLoginMessage('');
                 resetForm();
             }
         } catch (error) {
             console.error('Login error:', error);
-            setLoginMessage('');
-            resetForm(); // Optionally reset form on error
+            setLoginMessage('Invalid Credentials.');
+            resetForm();
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (validateForm()) {
-            handleLogin();
+            await handleLogin();
         } else {
             console.log('Form is invalid');
         }
@@ -76,9 +79,13 @@ const Login = () => {
 
     return (
         <div className="login-page">
-            <img className="login-header" src={loginBg} alt="Header background" />
+            <img className="login-header"
+                src={loginBg}
+                alt="Header background" />
             <div className="login-branding">
-                <img className="login-logo" src={logo} alt="Company Logo" />
+                <img className="login-logo"
+                    src={logo}
+                    alt="Company Logo" />
                 <p className="login-title">Online Project Management</p>
             </div>
             <div className='login-container'>

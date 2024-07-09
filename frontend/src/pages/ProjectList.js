@@ -28,7 +28,7 @@ const ProjectList = () => {
                     sortBy,
                     sortOrder,
                     page,
-                    limit: 5 // Define the limit per page
+                    limit: 6
                 }
             });
             setProjects(response.data.projects); // Assuming response.data contains the projects array
@@ -42,19 +42,19 @@ const ProjectList = () => {
 
     const handleSearchChange = (e) => {
         setSearchTerm(e.target.value);
-        setPage(1); // Reset to first page on search
+        setPage(1);
     };
 
     const clearSearch = () => {
         setSearchTerm('');
-        setPage(1); // Reset to first page on search clear
+        setPage(1); 
     };
 
     const handleSortChange = (e) => {
         const selectedSortBy = e.target.value;
         setSortBy(selectedSortBy);
         setSortOrder(prevSortOrder => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
-        setPage(1); // Reset to first page on sort change
+        setPage(1);
     };
 
     const headers = ['Project Theme', 'Reason', 'Type', 'Division', 'Category', 'Priority', 'Department', 'Location', 'Status'];
