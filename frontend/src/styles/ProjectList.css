@@ -1,10 +1,21 @@
-.input-group {
+.project-conatainer {
+  width: 90%;
+  height: 85vh;
+  background-color: white;
+  margin: 0 11px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+input-groups {
   position: relative;
   max-width: 100px;
   margin-bottom: 10px;
 }
 
-.input-group .form-control {
+.input-groups .form-border {
   border: none;
   border-bottom: 1px solid gray;
   border-radius: 0;
@@ -59,23 +70,24 @@
   }
 
   .project-conatainer {
-    height: 83vh;
-    transform: translate(0%, 2%);
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    margin-bottom: 20px;
+    transform: translate(0%, 7%);
     overflow-y: auto;
     position: relative;
   }
 
-  .sort-by-container{
-    margin-bottom: 18px;
-    font-size: 0.9rem;
-
+  .input-groups {
+    position: relative;
+    max-width: 135px;
+    margin-bottom: 10px;
   }
 
-  .form-control{
+  .form-control {
     margin-right: 8px;
   }
-
- 
 }
 
 /* pagination */
@@ -117,17 +129,16 @@
   font-size: 18px;
 }
 
-.btn-status{
+.btn-status {
   width: 100%;
   border: 2px solid #0a529f;
   color: #0a529f;
-  background-color:white;
+  background-color: white;
   font-size: 1.2rem;
   border-radius: 20px;
 }
 
-.btn-status:hover{
+.btn-status:hover {
   background-color: #0a529f;
   color: #ffff;
 }
-

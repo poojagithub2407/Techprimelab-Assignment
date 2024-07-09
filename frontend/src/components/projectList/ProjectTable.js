@@ -36,7 +36,7 @@ const ProjectTable = ({ projects, headers }) => {
             setLocalProjects(updatedProjects); // Update local state
 
             // Send request to update status on the server
-            await axios.put(`http://localhost:5000/api/projects/${id}/status`, { status });
+            await axios.put(`http://localhost:5000/api/projects/projects/${id}/status`, { status });
         } catch (error) {
             console.error('Error updating status:', error);
             // Revert local update if there's an error

@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use('/api/users', userRoutes);
 app.use('/api/projects', projectRoutes);
-app.use('/api', projectRoutes);
+// app.use('/api', projectRoutes);
 
 
 

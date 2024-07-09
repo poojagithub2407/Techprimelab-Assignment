@@ -23,7 +23,7 @@ const ProjectList = () => {
         setLoading(true);
         try {
             const response = await axios.get('http://localhost:5000/api/projects/projects', {
-                params: { 
+                params: {
                     Projecttheme: searchTerm,
                     sortBy,
                     sortOrder,
@@ -64,27 +64,32 @@ const ProjectList = () => {
     };
 
     return (
-        <div className="container project-container">
-            <div className="p-4 bg-white shadow-sm rounded">
-                <SearchBar
-                    searchTerm={searchTerm}
-                    handleSearchChange={handleSearchChange}
-                    clearSearch={clearSearch}
-                    showClearIcon={!!searchTerm}
-                />
-                <SortBySelect 
-                    field={sortBy} 
-                    handleSortChange={handleSortChange} 
-                    headers={headers.map(header => header.replace(' ', '').toLowerCase())} // Converting headers to match field names
-                />
+        <div className="container project-conatainer">
+            <div className="p-4rounded d-flex align-items-center justify-content-between">
+                <div className="mr-auto mr-sm-auto">
+                    <SearchBar
+                        searchTerm={searchTerm}
+                        handleSearchChange={handleSearchChange}
+                        clearSearch={clearSearch}
+                        showClearIcon={!!searchTerm}
+                    />
+                </div>
+                <div className="ml-auto mr-sm-auto">
+                    <SortBySelect
+                        field={sortBy}
+                        handleSortChange={handleSortChange}
+                        headers={headers.map(header => header.replace(' ', '').toLowerCase())} // Converting headers to match field names
+                    />
+                </div>
             </div>
+
             <div className="mt-4">
                 {isLoading ? (
                     <p>Loading...</p>
                 ) : (
                     <div>
                         <ProjectTable projects={projects} headers={headers} />
-                        <Pagination 
+                        <Pagination
                             currentPage={page}
                             totalPages={totalPages}
                             onPageChange={handlePageChange}

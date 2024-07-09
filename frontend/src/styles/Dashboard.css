@@ -29,19 +29,18 @@
    }
    
    .chart-container {
-     width: 50%;
-     height: 60vh;
-     background-color: #fcfcfd;
-     margin-top: 20px;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-     border-radius: 20px;
-   }
-   
+    width: 50%;
+    height: 60vh;
+    background-color: #fcfcfd;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+  }
  
-   
+/*    
    .chart {
      width: 100%;
-   }
+   } */
    @media (max-width: 768px) {
      .box:nth-child(n + 4) {
        display: none;
@@ -56,7 +55,7 @@
      }
    
      .chart {
-       width: 80%; 
+       width: 100%; 
        height: 49vh;
      }
    }

@@ -62,6 +62,7 @@ const getAllProjects = async (req, res) => {
     }
 };
 
+// Update project status
 const updateProjectStatus = async (req, res) => {
     const { id } = req.params;
     const { status } = req.body;
@@ -84,4 +85,97 @@ const updateProjectStatus = async (req, res) => {
     }
 };
 
-module.exports = { createProject, getAllProjects, updateProjectStatus };
+// Count total projects
+const countTotalProjects = async (req, res) => {
+    try {
+        const totalProjects = await Project.countDocuments();
+        res.json({ totalProjects });
+    } catch (error) {
+        console.error('Error counting total projects:', error);
+        res.status(500).json({ error: 'Unable to count total projects' });
+    }
+};
+
+// Count total projects with status Closed
+const countClosedProjects = async (req, res) => {
+    try {
+        const closedProjects = await Project.countDocuments({ Status: 'Closed' });
+        res.json({ closedProjects });
+    } catch (error) {
+        console.error('Error counting closed projects:', error);
+        res.status(500).json({ error: 'Unable to count closed projects' });
+    }
+};
+
+// Count total projects with status Running
+const countRunningProjects = async (req, res) => {
+    try {
+        const runningProjects = await Project.countDocuments({ Status: 'Running' });
+        res.json({ runningProjects });
+    } catch (error) {
+        console.error('Error counting running projects:', error);
+        res.status(500).json({ error: 'Unable to count running projects' });
+    }
+};
+
+// Count total projects where status is Running and end date is less than today's date
+const countOverdueRunningProjects = async (req, res) => {
+    try {
+        const today = new Date();
+        const overdueRunningProjects = await Project.countDocuments({
+            Status: 'Running',
+            Enddate: { $lt: today }
+        });
+        res.json({ overdueRunningProjects });
+    } catch (error) {
+        console.error('Error counting overdue running projects:', error);
+        res.status(500).json({ error: 'Unable to count overdue running projects' });
+    }
+};
+
+// Count total projects with status Cancelled
+const countCancelledProjects = async (req, res) => {
+    try {
+        const cancelledProjects = await Project.countDocuments({ Status: 'Cancelled' });
+        res.json({ cancelledProjects });
+    } catch (error) {
+        console.error('Error counting cancelled projects:', error);
+        res.status(500).json({ error: 'Unable to count cancelled projects' });
+    }
+};
+
+// Chart project counts by department
+const chartProject = async (req, res) => {
+    try {
+        const departments = ['Finance', 'Strategy', 'Quality', 'Maintenance']; // Example departments
+
+        const promises = departments.map(async (department) => {
+            const totalProjects = await Project.countDocuments({ Department: department });
+            const closedProjects = await Project.countDocuments({ Department: department, Status: 'Closed' });
+
+            return {
+                department,
+                totalProjects,
+                closedProjects
+            };
+        });
+
+        const departmentCounts = await Promise.all(promises);
+        res.json({ departmentCounts });
+    } catch (error) {
+        console.error('Error fetching department project counts:', error);
+        res.status(500).json({ error: 'Unable to fetch department project counts' });
+    }
+};
+
+module.exports = {
+    createProject,
+    getAllProjects,
+    updateProjectStatus,
+    countTotalProjects,
+    countClosedProjects,
+    countRunningProjects,
+    countOverdueRunningProjects,
+    countCancelledProjects,
+    chartProject
+};

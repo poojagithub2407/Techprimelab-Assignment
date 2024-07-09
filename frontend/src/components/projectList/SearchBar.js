@@ -1,10 +1,10 @@
 import React from 'react';
 
 const SearchBar = ({ searchTerm, handleSearchChange, clearSearch, showClearIcon }) => (
-    <div className="input-group">
+    <div className="input-group input-groups">
         <input
             type="text"
-            className="form-control"
+            className="form-control form-border"
             placeholder="Search"
             value={searchTerm}
             onChange={handleSearchChange}

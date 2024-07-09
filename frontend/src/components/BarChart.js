@@ -21,28 +21,29 @@ ChartJS.register(
 
 const BarChart = () => {
   const [data, setData] = useState({
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: [],
     datasets: [
       {
-        label: 'Total',
+        label: 'Total Projects',
         backgroundColor: '#0047ab',
-        data: [65, 59, 80, 81, 56, 55, 40],
-        barPercentage: 0.4,
-        categoryPercentage: 0.3,
+        data: [],
+        barPercentage: 0.4, // Default for mobile view
+        categoryPercentage: 0.6, // Default for mobile view
       },
       {
-        label: 'Closed',
+        label: 'Closed Projects',
         backgroundColor: '#04942b',
-        data: [28, 48, 40, 19, 86, 27, 90],
-        barPercentage: 0.4,
-        categoryPercentage: 0.3,
+        data: [],
+        barPercentage: 0.4, // Default for mobile view
+        categoryPercentage: 0.6, // Default for mobile view
       },
     ],
   });
 
+
   const options = {
     responsive: true,
-    maintainAspectRatio: true, 
+    maintainAspectRatio: true,
     plugins: {
       legend: {
         position: 'bottom',
@@ -52,6 +53,7 @@ const BarChart = () => {
       },
       title: {
         display: true,
+        text: 'Department-wise Total vs Closed Projects',
       },
     },
     scales: {
@@ -72,8 +74,8 @@ const BarChart = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth <= 768; 
-      options.maintainAspectRatio = !isMobile; 
+      const isMobile = window.innerWidth <= 768; // Adjust breakpoint as needed
+      options.maintainAspectRatio = !isMobile; // Adjust maintainAspectRatio based on screen size
     };
 
     handleResize();
@@ -83,6 +85,40 @@ const BarChart = () => {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/api/projects/chartProject');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const responseData = await response.json();
+
+        const labels = responseData.departmentCounts.map(item => item.department);
+        const totalProjects = responseData.departmentCounts.map(item => item.totalProjects);
+        const closedProjects = responseData.departmentCounts.map(item => item.closedProjects);
+
+        setData(prevData => ({
+          labels: labels,
+          datasets: [
+            {
+              ...prevData.datasets[0], // Total Projects dataset
+              data: totalProjects,
+            },
+            {
+              ...prevData.datasets[1], // Closed Projects dataset
+              data: closedProjects,
+            },
+          ],
+        }));
+      } catch (error) {
+        console.error('Error fetching data:', error.message);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (

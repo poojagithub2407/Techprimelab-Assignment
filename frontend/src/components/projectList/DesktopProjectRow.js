@@ -19,16 +19,18 @@ const DesktopProjectRow = ({ project, updateStatus }) => (
         <td>{project.Location}</td>
         <td>{project.Status}</td>
         <td>
-            {/* Example buttons (replace with your logic) */}
-            <button className="btn-status" onClick={() => updateStatus(project._id, 'Running')}>
-                Start
-            </button>
-            <button className="btn-status" onClick={() => updateStatus(project._id, 'Closed')}>
-                Close
-            </button>
-            <button className="btn-status" onClick={() => updateStatus(project._id, 'Cancelled')}>
-                Cancel
-            </button>
+            <div className='d-flex align-items-center justify-content-between gap-2'>
+                <button className="btn-status" onClick={() => updateStatus(project._id, 'Running')}>
+                    Start
+                </button>
+                <button className="btn-status" onClick={() => updateStatus(project._id, 'Closed')}>
+                    Close
+                </button>
+                <button className="btn-status" onClick={() => updateStatus(project._id, 'Cancelled')}>
+                    Cancel
+                </button>
+            </div>
+
         </td>
     </tr>
 );
