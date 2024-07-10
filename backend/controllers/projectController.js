@@ -27,7 +27,7 @@ const createProject = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
     try {
-        const { Projecttheme, Reason, Type, Division, Category, Priority, Department, Startdate, Enddate, Location, sortBy, sortOrder, page = 1, limit = 10 } = req.query;
+        const { Projecttheme, Reason, Type, Division, Category, Priority, Department, Startdate, Enddate, Location, sortBy, sortOrder = 'asc', page = 1, limit = 10 } = req.query;
 
         let filter = {};
 
@@ -57,6 +57,7 @@ const getAllProjects = async (req, res) => {
         res.status(500).json({ error: 'Unable to fetch projects' });
     }
 };
+
 
 const updateProjectStatus = async (req, res) => {
     const { id } = req.params;

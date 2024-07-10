@@ -47,7 +47,7 @@ const ProjectList = () => {
 
     const clearSearch = () => {
         setSearchTerm('');
-        setPage(1); 
+        setPage(1);
     };
 
     const handleSortChange = (e) => {
@@ -64,9 +64,9 @@ const ProjectList = () => {
     };
 
     return (
-        <div className="container project-conatainer">
-            <div className="p-4rounded d-flex align-items-center justify-content-between">
-                <div className="mr-auto mr-sm-auto">
+        <div className="container project-container">
+            <div className="p-4 rounded d-flex align-items-center justify-content-between">
+                <div className="mr-auto  mr-sm-auto">
                     <SearchBar
                         searchTerm={searchTerm}
                         handleSearchChange={handleSearchChange}

@@ -13,7 +13,7 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const [loginMessage, setLoginMessage] = useState('');
     const navigate = useNavigate();
-    const { login } = useContext(AuthContext); // Use the login function from the context
+    const { login } = useContext(AuthContext);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -43,21 +43,21 @@ const Login = () => {
 
             const { data } = response;
             if (data.result === 'no user found') {
-                setLoginMessage('Invalid Credentials.');
-                resetForm();
+                setLoginMessage('Invalid Credentials.'); // Display error message for invalid credentials
+                resetForm(); // Reset form fields and errors
             } else {
                 console.log('Login successful:', data);
-                login(data.token);
+                login(data.token); // Store token in context or local storage
 
-                navigate('/');
+                navigate('/'); // Redirect to home page after successful login
 
-                setLoginMessage('');
-                resetForm();
+                setLoginMessage(''); // Clear error message
+                resetForm(); // Reset form fields and errors
             }
         } catch (error) {
             console.error('Login error:', error);
-            setLoginMessage('Invalid Credentials.');
-            resetForm();
+            setLoginMessage('Invalid Credentials.'); // Display error message for login error
+            resetForm(); // Reset form fields and errors
         }
     };
 
@@ -75,6 +75,16 @@ const Login = () => {
         setEmail('');
         setPassword('');
         setErrors({});
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        setLoginMessage(''); // Clear login message when email changes
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        setLoginMessage(''); // Clear login message when password changes
     };
 
     return (
@@ -99,9 +109,10 @@ const Login = () => {
                                 id='email'
                                 className={`form-control p-3 ${errors.email ? 'is-invalid' : ''}`}
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={handleEmailChange} // Handle email change
                             />
-                            {errors.email && <div className="invalid-feedback">{errors.email}</div>}
+                            {errors.email &&
+                                <div className="invalid-feedback">{errors.email}</div>}
                         </div>
                         <div className="form-group mt-3">
                             <label htmlFor="password">Password</label>
@@ -111,18 +122,21 @@ const Login = () => {
                                     className={`form-control p-3 ${errors.password ? 'is-invalid' : ''}`}
                                     id="password"
                                     value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
+                                    onChange={handlePasswordChange} // Handle password change
                                 />
                                 <div className="input-icon" onClick={togglePasswordVisibility}>
                                     <i className={showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'}></i>
                                 </div>
                             </div>
-                            {errors.password && <div className="invalid-feedback">{errors.password}</div>}
+                            {errors.password &&
+                                <div className="invalid-feedback">{errors.password}</div>}
                             <div className='forgot-password'>Forgot password?</div>
                         </div>
                         <div className='form-group mt-4'>
                             <button type="submit" className='login-button'>Login</button>
-                            {loginMessage && <div className="text-danger mt-2">{loginMessage}</div>}
+                            {loginMessage && <div className="text-danger mt-2"
+                                style={{ textAlign: 'center' }}
+                            >{loginMessage}</div>}
                         </div>
                     </form>
                 </div>

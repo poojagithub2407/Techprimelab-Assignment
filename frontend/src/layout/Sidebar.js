@@ -33,8 +33,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className={`dashboard-container ${sidebarOpen ? 'sidebar-open' : ''}`}>
-      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+    <div className="dashboard-container">
+      <div className="sidebar">
         <div className="main-container">
           <Link to="/" onClick={() => handlePageChange('Dashboard')}>
             <img
@@ -46,7 +46,7 @@ const Sidebar = () => {
           </Link>
           <Link to="/create-project" onClick={() => handlePageChange('Create Project')}>
             <img
-              className="create-img "
+              className="create-img"
               src={pageName === 'Create Project' ? createProjectActive : createProject}
               alt="Create Project"
               style={{ cursor: 'pointer' }}

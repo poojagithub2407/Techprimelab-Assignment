@@ -1,6 +1,5 @@
-.project-conatainer {
+.project-container {
   width: 90%;
-  height: 85vh;
   background-color: white;
   margin: 0 11px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -40,12 +39,16 @@ input-groups {
   border-collapse: collapse;
   margin-top: 20px;
 }
+ .table th{
+ }
 
 .table th,
 .table td {
   padding: 8px;
   text-align: left;
   vertical-align: top;
+  background-color: skyblue;
+
   border-top: 1px solid #dee2e6;
 }
 
@@ -66,7 +69,7 @@ input-groups {
 @media (max-width: 768px) {
   
 
-  .project-conatainer {
+  .project-container {
     display: flex;
     flex-direction: column;
     height: 70vh;

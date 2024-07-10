@@ -56,7 +56,7 @@
 .project-img:hover,
 .dash-img.active,
 .create-img.active,
-.project-img.active {
+.project-img.active:active {
   border-left: 4px solid #0047ab;
 }
 

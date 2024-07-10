@@ -6,11 +6,11 @@ import '../../styles/CardView.css';
 
 const ProjectTable = ({ projects, headers }) => {
     const [isMobileView, setIsMobileView] = useState(false);
-    const [localProjects, setLocalProjects] = useState(projects); // State to manage projects locally
+    const [localProjects, setLocalProjects] = useState(projects);
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobileView(window.innerWidth <= 768); // Adjust breakpoint as needed
+            setIsMobileView(window.innerWidth <= 768);
         };
 
         handleResize();
@@ -37,11 +37,11 @@ const ProjectTable = ({ projects, headers }) => {
             console.error('Error updating status:', error);
             const revertedProjects = localProjects.map(project => {
                 if (project._id === id) {
-                    return { ...project, Status: project.Status }; // Revert to original status
+                    return { ...project, Status: project.Status };
                 }
                 return project;
             });
-            setLocalProjects(revertedProjects); // Update local state with reverted data
+            setLocalProjects(revertedProjects); 
         }
     };
 
@@ -56,7 +56,7 @@ const ProjectTable = ({ projects, headers }) => {
     const renderDesktopView = () => (
         <div className="table-responsive">
             <table className="table">
-                <thead>
+                <thead style={{ backgroundColor: 'lightSkyBlue' }}>
                     <tr>
                         {headers && headers.map((header, index) => (
                             <th key={index}>{header}</th>
