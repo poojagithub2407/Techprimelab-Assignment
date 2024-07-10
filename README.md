@@ -69,7 +69,3 @@ The following functionalities are required for the assignment:
 ## Mockups and Resources
 - [Assignment Demo Videos](https://drive.google.com/drive/folders/1oqTrRXimLiNGHoizuQ0eHNkHExtwlW-3?usp=drive_link)
 
-## Notes
-- Create separate API calls for getting counters and chart data.
-- Do not use the project listing API to get these values.
-- Implement a horizontal menu or a similar one shown in the mockups.
