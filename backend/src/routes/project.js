@@ -1,16 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const {
-     createProject,
-     getAllProjects,
-     updateProjectStatus,
-     countTotalProjects,
-     countClosedProjects,
+
+
+const { createProject } = require('../controllers/createProject');
+const { getAllProjects } = require('../controllers/getAllProjects');
+const { updateProjectStatus } = require('../controllers/updateStatus');
+
+const { countTotalProjects,
      countRunningProjects,
-     countOverdueRunningProjects,
      countCancelledProjects,
-     chartProject
-} = require('../controllers/projectController');
+     countOverdueRunningProjects,
+     countClosedProjects } = require('../controllers/countofProject')
+
+
+     const{chartProject}=require('../controllers/chartProject')
+
+
 
 router.post('/create', createProject);
 router.get('/projects', getAllProjects);
