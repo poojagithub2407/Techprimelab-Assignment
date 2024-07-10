@@ -1,10 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/Login.css';
 import loginBg from '../assets/images/login-bg-1.svg';
 import logo from '../assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext'; 
 import BASE_URL from '../api/api';
 
 const Login = () => {
@@ -14,7 +13,6 @@ const Login = () => {
     const [errors, setErrors] = useState({});
     const [loginMessage, setLoginMessage] = useState('');
     const navigate = useNavigate();
-    const { login } = useContext(AuthContext);
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -49,8 +47,8 @@ const Login = () => {
                 setLoginMessage('Invalid Credentials.'); 
                 resetForm(); 
             } else {
-                console.log('Login successful:', data);
-                login(data.token); 
+                console.log('Login successful:', data);                
+                localStorage.setItem('token', JSON.stringify(data.token));
 
                 navigate('/');
 

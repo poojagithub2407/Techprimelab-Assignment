@@ -4,17 +4,14 @@ import '../styles/Navbar.css';
 import headerBg from '../assets/images/Header-bg.svg';
 import projectLogo from '../assets/images/Logo.svg';
 import logout1 from '../assets/images/Logout.svg';
-import { useContext } from 'react';
-import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({ pageName, toggleSidebar }) => {
-  const { logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();
-    navigate('/login');
+    localStorage.removeItem('token')
+    navigate('/login')
   };
 
   return (

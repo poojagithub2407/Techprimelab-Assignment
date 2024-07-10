@@ -10,13 +10,11 @@ import projectListActive from '../assets/images/Project-list-active.svg';
 import logout1 from '../assets/images/logout-1.svg';
 import Navbar from './Navbar';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
 
 const Sidebar = () => {
   const [pageName, setPageName] = useState('Dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
 
   const handlePageChange = (newPage) => {
     setPageName(newPage);
@@ -24,13 +22,11 @@ const Sidebar = () => {
   };
 
   const handleLogout = () => {
-    logout();
-    navigate('/login');
+    localStorage.removeItem('token')
+    navigate('/login')
   };
 
-  const toggleSidebar = () => {
-    setSidebarOpen(!sidebarOpen);
-  };
+  
 
   return (
     <div className="dashboard-container">
@@ -66,7 +62,7 @@ const Sidebar = () => {
           <img className="sidebar-logout" src={logout1} alt="Log Out" />
         </div>
       </div>
-      <Navbar pageName={pageName} toggleSidebar={toggleSidebar} />
+      <Navbar pageName={pageName}/>
     </div>
   );
 };

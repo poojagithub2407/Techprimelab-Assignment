@@ -6,6 +6,7 @@ import SearchBar from '../components/projectList/SearchBar'; // Import the Searc
 import SortBySelect from '../components/projectList/SortBySelect'; // Import the SortBySelect component
 import Pagination from '../components/projectList/Pagination'; // Import the Pagination component
 import BASE_URL from '../api/api';
+import Sidebar from '../layout/Sidebar';
 
 const ProjectList = () => {
     const [projects, setProjects] = useState([]);
@@ -65,40 +66,44 @@ const ProjectList = () => {
     };
 
     return (
-        <div className="container project-container">
-            <div className="p-4 rounded d-flex align-items-center justify-content-between">
-                <div className="mr-auto  mr-sm-auto">
-                    <SearchBar
-                        searchTerm={searchTerm}
-                        handleSearchChange={handleSearchChange}
-                        clearSearch={clearSearch}
-                        showClearIcon={!!searchTerm}
-                    />
-                </div>
-                <div className="ml-auto mr-sm-auto">
-                    <SortBySelect
-                        field={sortBy}
-                        handleSortChange={handleSortChange}
-                        headers={headers} // Pass headers directly for mapping to field names in SortBySelect
-                    />
-                </div>
-            </div>
-
-            <div className="mt-4">
-                {isLoading ? (
-                    <p>Loading...</p>
-                ) : (
-                    <div>
-                        <ProjectTable projects={projects} headers={headers} />
-                        <Pagination
-                            currentPage={page}
-                            totalPages={totalPages}
-                            onPageChange={handlePageChange}
+        <>
+            <Sidebar />
+            <div className="container project-container">
+                <div className="p-4 rounded d-flex align-items-center justify-content-between">
+                    <div className="mr-auto  mr-sm-auto">
+                        <SearchBar
+                            searchTerm={searchTerm}
+                            handleSearchChange={handleSearchChange}
+                            clearSearch={clearSearch}
+                            showClearIcon={!!searchTerm}
                         />
                     </div>
-                )}
+                    <div className="ml-auto mr-sm-auto">
+                        <SortBySelect
+                            field={sortBy}
+                            handleSortChange={handleSortChange}
+                            headers={headers} // Pass headers directly for mapping to field names in SortBySelect
+                        />
+                    </div>
+                </div>
+
+                <div className="mt-4">
+                    {isLoading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <div>
+                            <ProjectTable projects={projects} headers={headers} />
+                            <Pagination
+                                currentPage={page}
+                                totalPages={totalPages}
+                                onPageChange={handlePageChange}
+                            />
+                        </div>
+                    )}
+                </div>
             </div>
-        </div>
+        </>
+
     );
 };
 
