@@ -5,6 +5,7 @@ import ProjectTable from '../components/projectList/ProjectTable';
 import SearchBar from '../components/projectList/SearchBar'; // Import the SearchBar component
 import SortBySelect from '../components/projectList/SortBySelect'; // Import the SortBySelect component
 import Pagination from '../components/projectList/Pagination'; // Import the Pagination component
+import BASE_URL from '../api/api';
 
 const ProjectList = () => {
     const [projects, setProjects] = useState([]);
@@ -17,21 +18,21 @@ const ProjectList = () => {
 
     useEffect(() => {
         fetchProjects();
-    }, [searchTerm, sortBy, sortOrder, page]); // Fetch projects whenever searchTerm, sortBy, sortOrder, or page changes
+    }, [searchTerm, sortBy, sortOrder, page]);
 
     const fetchProjects = async () => {
         setLoading(true);
         try {
-            const response = await axios.get('http://localhost:5000/api/projects/projects', {
+            const response = await axios.get(`${BASE_URL}/projects/projects`, {
                 params: {
-                    Projecttheme: searchTerm,
-                    sortBy,
+                    searchTerm,
+                    sortBy: sortBy.toLowerCase(), // Ensure sortBy is lowercased to match backend field names
                     sortOrder,
                     page,
                     limit: 6
                 }
             });
-            setProjects(response.data.projects); // Assuming response.data contains the projects array
+            setProjects(response.data.projects);
             setTotalPages(response.data.totalPages);
         } catch (error) {
             console.error('Error fetching projects:', error);
@@ -78,7 +79,7 @@ const ProjectList = () => {
                     <SortBySelect
                         field={sortBy}
                         handleSortChange={handleSortChange}
-                        headers={headers.map(header => header.replace(' ', '').toLowerCase())} // Converting headers to match field names
+                        headers={headers} // Pass headers directly for mapping to field names in SortBySelect
                     />
                 </div>
             </div>

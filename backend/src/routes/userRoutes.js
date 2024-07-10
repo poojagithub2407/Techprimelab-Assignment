@@ -7,22 +7,17 @@ router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    // Check if email and password are provided
     if (!email || !password) {
       return res.status(400).json({ error: 'Email and password are required' });
     }
 
-    // Find user by email and password (assuming password is hashed in the database)
     let user = await User.findOne({ email, password }).select('-password');
 
     if (user) {
-      // Generate JWT token
       const token = generateToken(user);
 
-      // Return the user object and token
       res.json({ user, token });
     } else {
-      // Return error if no user found
       res.status(401).json({ error: 'Invalid email or password' });
     }
   } catch (err) {

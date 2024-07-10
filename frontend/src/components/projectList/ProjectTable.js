@@ -3,6 +3,7 @@ import axios from 'axios';
 import MobileProjectCard from './MobileProjectCard';
 import DesktopProjectRow from './DesktopProjectRow';
 import '../../styles/CardView.css';
+import BASE_URL from '../../api/api';
 
 const ProjectTable = ({ projects, headers }) => {
     const [isMobileView, setIsMobileView] = useState(false);
@@ -32,7 +33,7 @@ const ProjectTable = ({ projects, headers }) => {
             });
             setLocalProjects(updatedProjects); 
 
-            await axios.put(`http://localhost:5000/api/projects/projects/${id}/status`, { status });
+            await axios.put(`${BASE_URL}/projects/${id}/status`, { status });
         } catch (error) {
             console.error('Error updating status:', error);
             const revertedProjects = localProjects.map(project => {

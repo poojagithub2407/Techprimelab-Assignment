@@ -13,10 +13,12 @@ const MobileProjectCard = ({ project, updateStatus }) => (
         </div>
         <div className='mt-2'>
             <div>
-                <small>{new Date(project.Startdate).toLocaleDateString()} to {new Date(project.Enddate).toLocaleDateString()}</small>
+                <small>{new Date(project.Startdate).toLocaleDateString()}
+                    to {new Date(project.Enddate).toLocaleDateString()}</small>
             </div>
             <div>
-                <span className='text-black-50'>Reason</span>:<strong style={{ fontSize: '1rem' }}>{project.Reason}</strong>
+                <span className='text-black-50'>Reason</span>
+                :<strong style={{ fontSize: '1rem' }}>{project.Reason}</strong>
             </div>
             <div className="label-value-list">
                 <span className='text-black-50'>Type</span>: <span>{project.Type}</span>

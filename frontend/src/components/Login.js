@@ -4,7 +4,8 @@ import '../styles/Login.css';
 import loginBg from '../assets/images/login-bg-1.svg';
 import logo from '../assets/images/Logo.svg';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext'; // Import the Auth context
+import { AuthContext } from '../context/AuthContext'; 
+import BASE_URL from '../api/api';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -38,28 +39,28 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/api/users/login', {
+            const response = await axios.post(`${BASE_URL}/users/login`, {
                 email,
                 password
             });
 
             const { data } = response;
             if (data.result === 'no user found') {
-                setLoginMessage('Invalid Credentials.'); // Display error message for invalid credentials
-                resetForm(); // Reset form fields and errors
+                setLoginMessage('Invalid Credentials.'); 
+                resetForm(); 
             } else {
                 console.log('Login successful:', data);
-                login(data.token); // Store token in context or local storage
+                login(data.token); 
 
-                navigate('/'); // Redirect to home page after successful login
+                navigate('/');
 
-                setLoginMessage(''); // Clear error message
-                resetForm(); // Reset form fields and errors
+                setLoginMessage('');
+                resetForm(); 
             }
         } catch (error) {
             console.error('Login error:', error);
-            setLoginMessage('Invalid Credentials.'); // Display error message for login error
-            resetForm(); // Reset form fields and errors
+            setLoginMessage('Invalid Credentials.'); 
+            resetForm();
         }
     };
 
@@ -81,12 +82,12 @@ const Login = () => {
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
-        setLoginMessage(''); // Clear login message when email changes
+        setLoginMessage(''); 
     };
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
-        setLoginMessage(''); // Clear login message when password changes
+        setLoginMessage(''); 
     };
 
     return (

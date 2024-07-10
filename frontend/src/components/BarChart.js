@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
+import BASE_URL from '../api/api';
 
 ChartJS.register(
   CategoryScale,
@@ -27,15 +28,15 @@ const BarChart = () => {
         label: 'Total Projects',
         backgroundColor: '#0047ab',
         data: [],
-        barPercentage: 0.4, 
-        categoryPercentage: 0.6, 
+        barPercentage: 0.4,
+        categoryPercentage: 0.6,
       },
       {
         label: 'Closed Projects',
         backgroundColor: '#04942b',
         data: [],
         barPercentage: 0.4,
-        categoryPercentage: 0.6, 
+        categoryPercentage: 0.6,
       },
     ],
   });
@@ -74,8 +75,8 @@ const BarChart = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const isMobile = window.innerWidth <= 768; 
-      options.maintainAspectRatio = !isMobile; 
+      const isMobile = window.innerWidth <= 768;
+      options.maintainAspectRatio = !isMobile;
     };
 
     handleResize();
@@ -90,7 +91,7 @@ const BarChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/projects/chartProject');
+        const response = await fetch(`${BASE_URL}/projects/chartProject`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -108,7 +109,7 @@ const BarChart = () => {
               data: totalProjects,
             },
             {
-              ...prevData.datasets[1], 
+              ...prevData.datasets[1],
               data: closedProjects,
             },
           ],

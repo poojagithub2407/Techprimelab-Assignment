@@ -8,11 +8,11 @@ const SortBySelect = ({ field, handleSortChange, headers }) => (
                 className="form-select"
                 value={field}
                 onChange={handleSortChange}
-                style={{ border: 'none' }} 
+                style={{ border: 'none' }}
             >
                 <option value="">Select Field</option>
                 {headers.map((header, index) => (
-                    <option key={index} value={header}>{header}</option>
+                    <option key={index} value={header.toLowerCase()}>{header}</option>
                 ))}
             </select>
         </div>

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../styles/Dashboard.css';
 import BarChart from './BarChart';
+import BASE_URL from '../api/api';
 
 const Dashboard = () => {
   const [counts, setCounts] = useState({
@@ -15,11 +17,11 @@ const Dashboard = () => {
     const fetchProjectCounts = async () => {
       try {
         const responses = await Promise.all([
-          fetch('http://localhost:5000/api/projects/count/total').then(res => res.json()),
-          fetch('http://localhost:5000/api/projects/count/closed').then(res => res.json()),
-          fetch('http://localhost:5000/api/projects/count/running').then(res => res.json()),
-          fetch('http://localhost:5000/api/projects/count/overdue-running').then(res => res.json()),
-          fetch('http://localhost:5000/api/projects/count/cancelled').then(res => res.json())
+          axios.get(`${BASE_URL}/projects/count/total`).then(res=>res.data),
+          axios.get(`${BASE_URL}/projects/count/closed`).then(res => res.data),
+          axios.get( `${BASE_URL}/projects/count/running`).then(res => res.data),
+          axios.get(`${BASE_URL}/projects/count/overdue-running`).then(res => res.data),
+          axios.get(`${BASE_URL}/projects/count/cancelled`).then(res => res.data)
         ]);
 
         const [total, closed, running, overdue, cancelled] = responses;

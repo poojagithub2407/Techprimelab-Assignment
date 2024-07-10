@@ -27,36 +27,58 @@ const createProject = async (req, res) => {
 
 const getAllProjects = async (req, res) => {
     try {
-        const { Projecttheme, Reason, Type, Division, Category, Priority, Department, Startdate, Enddate, Location, sortBy, sortOrder = 'asc', page = 1, limit = 10 } = req.query;
+        const {
+            searchTerm, 
+            sortBy,
+            sortOrder = 'asc',
+            page = 1,
+            limit = 10
+        } = req.query;
 
         let filter = {};
 
-        if (Projecttheme) filter.Projecttheme = new RegExp(Projecttheme, 'i');
-        if (Reason) filter.Reason = new RegExp(Reason, 'i');
-        if (Type) filter.Type = new RegExp(Type, 'i');
-        if (Division) filter.Division = new RegExp(Division, 'i');
-        if (Category) filter.Category = new RegExp(Category, 'i');
-        if (Priority) filter.Priority = new RegExp(Priority, 'i');
-        if (Department) filter.Department = new RegExp(Department, 'i');
-        if (Location) filter.Location = new RegExp(Location, 'i');
-        if (Startdate) filter.Startdate = { $gte: new Date(Startdate) };
-        if (Enddate) filter.Enddate = { $lte: new Date(Enddate) };
+        if (searchTerm) {
+            filter.$or = [
+                { Projecttheme: new RegExp(searchTerm, 'i') },
+                { Reason: new RegExp(searchTerm, 'i') },
+                { Type: new RegExp(searchTerm, 'i') },
+                { Division: new RegExp(searchTerm, 'i') },
+                { Category: new RegExp(searchTerm, 'i') },
+                { Priority: new RegExp(searchTerm, 'i') },
+                { Department: new RegExp(searchTerm, 'i') },
+                { Location: new RegExp(searchTerm, 'i') },
+                { Status: new RegExp(searchTerm, 'i') },
+            ];
+        }
 
         let sortCriteria = {};
-        if (sortBy) {
+
+        const sortableFields = ['Project Theme', 'Reason', 'Type', 'Division', 'Category', 'Priority', 'Department', 'Location'];
+
+        if (sortBy && sortableFields.includes(sortBy)) {
             sortCriteria[sortBy] = sortOrder === 'desc' ? -1 : 1;
+        } else {
+            sortCriteria['Projecttheme'] = sortOrder === 'desc' ? -1 : 1;
         }
 
         const skip = (page - 1) * limit;
         const totalDocuments = await Project.countDocuments(filter);
         const projects = await Project.find(filter).sort(sortCriteria).skip(skip).limit(parseInt(limit));
 
-        res.json({ projects, totalDocuments, totalPages: Math.ceil(totalDocuments / limit), currentPage: parseInt(page) });
+        res.json({
+            projects,
+            totalDocuments,
+            totalPages: Math.ceil(totalDocuments / limit),
+            currentPage: parseInt(page)
+        });
     } catch (error) {
         console.error('Error fetching projects:', error);
         res.status(500).json({ error: 'Unable to fetch projects' });
     }
 };
+
+
+
 
 
 const updateProjectStatus = async (req, res) => {

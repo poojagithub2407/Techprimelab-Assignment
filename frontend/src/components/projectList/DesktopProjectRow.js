@@ -7,7 +7,8 @@ const DesktopProjectRow = ({ project, updateStatus }) => (
                 <strong>{project.Projecttheme}</strong>
             </div>
             <div>
-                <small>{new Date(project.Startdate).toLocaleDateString()} to {new Date(project.Enddate).toLocaleDateString()}</small>
+                <small>{new Date(project.Startdate).toLocaleDateString()} 
+                to {new Date(project.Enddate).toLocaleDateString()}</small>
             </div>
         </td>
         <td>{project.Reason}</td>

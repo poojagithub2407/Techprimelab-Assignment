@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/CreateProject.css';
+import BASE_URL from '../api/api';
 
 const CreateProject = () => {
   const initialFormData = {
@@ -52,11 +53,11 @@ const CreateProject = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/projects/create', formData);
+      const response = await axios.post(`${BASE_URL}/projects/create`, formData);
 
       if (response.status === 201) {
         setMessage('Project created successfully!');
-        setFormData(initialFormData); // Reset form data after successful submission
+        setFormData(initialFormData);
       }
     } catch (error) {
       console.error('Error creating project:', error);
