@@ -73,9 +73,8 @@
   background-color: #0056b3;
 }
 
-.form-control.is-invalid {
-  border: 1px solid red; /* Red border for invalid state */
-  background-color: #ffe6e6; /* Light red background for invalid state */
+ .invalid {
+  border: 1px solid red !important;
 }
 
 .invalid-feedback {
@@ -84,7 +83,10 @@
   margin-top: 0.2rem;
 }
 
-/* Input group styling */
+.label-error{
+  color: #ff0000;
+}
+
 .input-group {
   position: relative;
 }
@@ -101,13 +103,9 @@
   padding-right: 30px;
 }
 
-.input-field {
-  padding-right: 30px;
-}
 
 .forgot-password {
   text-align: right;
-  margin-top: -5px;
   font-size: 0.9rem;
   color: #0056b3;
   cursor: pointer;
@@ -117,6 +115,7 @@
   color: #ff0000;
   font-size: 0.8rem;
 }
+
 
 @media (max-width: 768px) {
   .login-title {
@@ -136,4 +135,15 @@
     top: 300%;
     width: 80%;
   }
+
+  .row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.forgot-password,
+.invalid-feedback {
+    font-size: 12px !important; 
+    margin-bottom: -10px;
+}
 }

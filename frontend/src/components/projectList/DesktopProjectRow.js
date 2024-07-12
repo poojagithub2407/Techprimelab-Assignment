@@ -1,5 +1,6 @@
 import React from 'react';
-import '../../styles/ProjectList.css'
+import '../../styles/ProjectList.css';
+
 const DesktopProjectRow = ({ project, updateStatus }) => (
     <tr>
         <td>
@@ -7,8 +8,15 @@ const DesktopProjectRow = ({ project, updateStatus }) => (
                 <strong>{project.Projecttheme}</strong>
             </div>
             <div>
-                <small>{new Date(project.Startdate).toLocaleDateString()} 
-                to {new Date(project.Enddate).toLocaleDateString()}</small>
+                <small>
+                    {new Date(project.Startdate)
+                        .toLocaleDateString('en-US',
+                            { month: 'long', day: 'numeric', year: 'numeric' })}
+                    &nbsp;to&nbsp;
+                    {new Date(project.Enddate)
+                        .toLocaleDateString('en-US',
+                            { month: 'long', day: 'numeric', year: 'numeric' })}
+                </small>
             </div>
         </td>
         <td>{project.Reason}</td>
@@ -21,17 +29,20 @@ const DesktopProjectRow = ({ project, updateStatus }) => (
         <td>{project.Status}</td>
         <td>
             <div className='d-flex align-items-center justify-content-between gap-2'>
-                <button className="btn-status" onClick={() => updateStatus(project._id, 'Running')}>
+                <button
+                    className="btn-status btn-default"
+                    onClick={() => updateStatus(project._id, 'Running')}>
                     Start
                 </button>
-                <button className="btn-status" onClick={() => updateStatus(project._id, 'Closed')}>
+                <button className="btn-status"
+                    onClick={() => updateStatus(project._id, 'Closed')}>
                     Close
                 </button>
-                <button className="btn-status" onClick={() => updateStatus(project._id, 'Cancelled')}>
+                <button className="btn-status"
+                    onClick={() => updateStatus(project._id, 'Cancelled')}>
                     Cancel
                 </button>
             </div>
-
         </td>
     </tr>
 );

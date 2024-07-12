@@ -17,11 +17,10 @@ const Navbar = ({ pageName, toggleSidebar }) => {
   return (
     <div className='nav-container'>
       <img className='header-img' src={headerBg} alt='Header Background' />
-      <div className='nav-list'>
-        <div className='gap-3'>
-          <span>{'<'}</span>
-          <span>{pageName}</span>
-        </div>
+      <div className='nav-list'>  <div >
+        <span className='sign'>{'<'}</span>
+        <span className='space'>{pageName}</span>
+      </div>
         <div className='logo-container'>
           <img src={projectLogo} alt='project-logo' className='project-logo' />
         </div>

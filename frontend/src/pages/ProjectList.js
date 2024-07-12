@@ -59,7 +59,7 @@ const ProjectList = () => {
         setPage(1);
     };
 
-    const headers = ['Project Theme', 'Reason', 'Type', 'Division', 'Category', 'Priority', 'Department', 'Location', 'Status'];
+    const headers = ['Project', 'Reason', 'Type', 'Division', 'Category', 'Priority', 'Department', 'Location', 'Status'];
 
     const handlePageChange = (newPage) => {
         setPage(newPage);
@@ -70,7 +70,7 @@ const ProjectList = () => {
             <Sidebar />
             <div className="container project-container">
                 <div className="p-4 rounded d-flex align-items-center justify-content-between">
-                    <div className="mr-auto  mr-sm-auto">
+                    <div className="mr-md-auto  mr-sm-0">
                         <SearchBar
                             searchTerm={searchTerm}
                             handleSearchChange={handleSearchChange}
@@ -82,7 +82,7 @@ const ProjectList = () => {
                         <SortBySelect
                             field={sortBy}
                             handleSortChange={handleSortChange}
-                            headers={headers} // Pass headers directly for mapping to field names in SortBySelect
+                            headers={headers} 
                         />
                     </div>
                 </div>

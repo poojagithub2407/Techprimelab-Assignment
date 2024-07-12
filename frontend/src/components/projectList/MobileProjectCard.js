@@ -1,27 +1,30 @@
 import React from 'react';
-import '../../styles/ProjectList.css'
+import '../../styles/ProjectList.css';
 
 const MobileProjectCard = ({ project, updateStatus }) => (
-    <div className="card p-2">
-        <div className='d-flex align-items-center justify-content-between' >
-            <div className=''>
+    <div className="card p-2 mb-2 border-0">
+        <div className='d-flex align-items-center justify-content-between'>
+            <div className="flex-grow-1">
                 <strong className="font-weight-normal">{project.Projecttheme}</strong>
+                <div>
+                    <small>{new Date(project.Startdate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                        &nbsp;to &nbsp; {new Date(project.Enddate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                    </small>
+                </div>
             </div>
-            <div>
+            <strong className="font-weight-normal mt-0">
                 {project.Status}
-            </div>
+            </strong>
         </div>
         <div className='mt-2'>
-            <div>
-                <small>{new Date(project.Startdate).toLocaleDateString()}
-                    to {new Date(project.Enddate).toLocaleDateString()}</small>
-            </div>
+
             <div>
                 <span className='text-black-50'>Reason</span>
                 :<strong style={{ fontSize: '1rem' }}>{project.Reason}</strong>
             </div>
             <div className="label-value-list">
-                <span className='text-black-50'>Type</span>: <span>{project.Type}</span>
+                <span className='text-black-50'>Type</span>
+                : <span>{project.Type}</span>
                 <span className='bullet-point' />
                 <span className="text-black-50">Category</span>: <span>{project.Category}</span>
             </div>
@@ -36,8 +39,8 @@ const MobileProjectCard = ({ project, updateStatus }) => (
             <div>
                 <span className='text-black-50'>Priority</span>:<span> {project.Priority}</span>
             </div>
-            <div className='d-flex align-items-center justify-content-between gap-2'>
-                <button className="btn-status" onClick={() => updateStatus(project._id, 'Running')}>
+            <div className='d-flex align-items-center justify-content-between gap-2 mt-3'>
+                <button className="btn-status btn-default" onClick={() => updateStatus(project._id, 'Running')}>
                     Start
                 </button>
                 <button className="btn-status" onClick={() => updateStatus(project._id, 'Closed')}>
@@ -48,7 +51,6 @@ const MobileProjectCard = ({ project, updateStatus }) => (
                 </button>
             </div>
         </div>
-
     </div>
 );
 

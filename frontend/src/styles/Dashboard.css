@@ -17,8 +17,8 @@
      border-radius: 5px;
      flex: 1;
      margin: 0 10px;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add this line for shadow */
-     border-left: 10px solid #87ceeb; /* Hexadecimal color for sky blue */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+     border-left: 10px solid #87ceeb; 
    }
    
    .closed {
@@ -37,11 +37,12 @@
     border-radius: 20px;
   }
  
-/*    
-   .chart {
-     width: 100%;
-   } */
+   
+   
    @media (max-width: 768px) {
+    .container{
+      overflow-y:auto ;
+    }
      .box:nth-child(n + 4) {
        display: none;
      }

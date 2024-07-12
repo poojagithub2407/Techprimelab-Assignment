@@ -23,10 +23,7 @@ const Login = () => {
 
         if (!email.trim()) {
             errors.email = 'Email is required';
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            errors.email = 'Email is invalid';
         }
-
         if (!password.trim()) {
             errors.password = 'Password is required';
         }
@@ -44,20 +41,20 @@ const Login = () => {
 
             const { data } = response;
             if (data.result === 'no user found') {
-                setLoginMessage('Invalid Credentials.'); 
-                resetForm(); 
+                setLoginMessage('Invalid Credentials.');
+                resetForm();
             } else {
-                console.log('Login successful:', data);                
+                console.log('Login successful:', data);
                 localStorage.setItem('token', JSON.stringify(data.token));
 
                 navigate('/');
 
                 setLoginMessage('');
-                resetForm(); 
+                resetForm();
             }
         } catch (error) {
             console.error('Login error:', error);
-            setLoginMessage('Invalid Credentials.'); 
+            setLoginMessage('Invalid Credentials.');
             resetForm();
         }
     };
@@ -80,12 +77,14 @@ const Login = () => {
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
-        setLoginMessage(''); 
+        setLoginMessage('');
+        setErrors(prevErrors => ({ ...prevErrors, email: '' }));
     };
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
-        setLoginMessage(''); 
+        setLoginMessage('');
+        setErrors(prevErrors => ({ ...prevErrors, password: '' }));
     };
 
     return (
@@ -104,26 +103,26 @@ const Login = () => {
                 <div className='login-form p-4'>
                     <form onSubmit={handleSubmit}>
                         <div className='form-group mt-3'>
-                            <label className='form-label' htmlFor="email">Email</label>
+                            <label className={`form-label ${errors.email ? 'label-error' : ''}`} htmlFor="email">Email</label>
                             <input
                                 type='email'
                                 id='email'
-                                className={`form-control p-3 ${errors.email ? 'is-invalid' : ''}`}
+                                className={`form-control ${errors.email ? 'invalid' : ''}`}
                                 value={email}
-                                onChange={handleEmailChange} // Handle email change
+                                onChange={handleEmailChange} 
                             />
                             {errors.email &&
                                 <div className="invalid-feedback">{errors.email}</div>}
                         </div>
                         <div className="form-group mt-3">
-                            <label htmlFor="password">Password</label>
-                            <div className="input-group">
+                        <label className={`form-label ${errors.password ? 'label-error' : ''}`} htmlFor="password">Password</label>
+                        <div className="input-group">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
-                                    className={`form-control p-3 ${errors.password ? 'is-invalid' : ''}`}
+                                    className={`form-control ${errors.password ? 'invalid' : ''}`}
                                     id="password"
                                     value={password}
-                                    onChange={handlePasswordChange} // Handle password change
+                                    onChange={handlePasswordChange} 
                                 />
                                 <div className="input-icon" onClick={togglePasswordVisibility}>
                                     <i className={showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'}></i>

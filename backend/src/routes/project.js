@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
 const { createProject } = require('../controllers/createProject');
 const { getAllProjects } = require('../controllers/getAllProjects');
 const { updateProjectStatus } = require('../controllers/updateStatus');

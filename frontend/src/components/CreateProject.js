@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {  useNavigate } from 'react-router-dom'; 
 import '../styles/CreateProject.css';
 import BASE_URL from '../api/api';
 import Sidebar from './../layout/Sidebar';
@@ -20,38 +21,27 @@ const CreateProject = () => {
 
   const [formData, setFormData] = useState(initialFormData);
   const [message, setMessage] = useState('');
-  const [startDateError, setStartDateError] = useState('');
-  const [endDateError, setEndDateError] = useState('');
+  const [errorClass, setErrorClass] = useState('');
+  const navigate = useNavigate(); 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
-
-  const handleStartDateChange = (e) => {
-    const { value } = e.target;
-    setFormData({ ...formData, Startdate: value });
-    setStartDateError('');
-    if (formData.Enddate && value > formData.Enddate) {
-      setEndDateError('End date cannot be smaller than start date');
-    } else {
-      setEndDateError('');
-    }
-  };
-
-  const handleEndDateChange = (e) => {
-    const { value } = e.target;
-    setFormData({ ...formData, Enddate: value });
-    setEndDateError('');
-    if (formData.Startdate && value < formData.Startdate) {
-      setEndDateError('End date cannot be greater than start date');
-    } else {
-      setEndDateError('');
+    
+    if (message !== '') {
+      setMessage('');
+      setErrorClass('');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (new Date(formData.Enddate) < new Date(formData.Startdate)) {
+      setMessage('End Date is  ');
+      setErrorClass('error-border');
+      return;
+    }
 
     try {
       const response = await axios.post(`${BASE_URL}/projects/create`, formData);
@@ -59,6 +49,8 @@ const CreateProject = () => {
       if (response.status === 201) {
         setMessage('Project created successfully!');
         setFormData(initialFormData);
+        setErrorClass('');
+        navigate('/project-list');
       }
     } catch (error) {
       console.error('Error creating project:', error);
@@ -68,11 +60,11 @@ const CreateProject = () => {
 
   return (
     <>
-      <Sidebar/>
+      <Sidebar />
       <div className='container create-container'>
         <form onSubmit={handleSubmit}>
           <div className='row mt-sm-0'>
-            <div className='col-md-8 col-sm-2 mt-5'>
+            <div className='col-md-8 col-sm-2 mt-md-5 mt-sm-1'>
               <textarea
                 className='form-control'
                 placeholder='Enter Project Theme'
@@ -88,7 +80,7 @@ const CreateProject = () => {
               </button>
             </div>
           </div>
-          <div className='row mt-4'>
+          <div className='row mt-md-4 mt-sm-0'>
             <div className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Reason</label>
               <select
@@ -182,25 +174,26 @@ const CreateProject = () => {
                 className='form-control p-md-3 p-sm-0'
                 name='Startdate'
                 value={formData.Startdate}
-                onChange={handleStartDateChange}
+                onChange={handleInputChange}
                 required
               />
-              {startDateError && (
-                <small className='text-danger'>{startDateError}</small>
-              )}
             </div>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
-              <label className='form-label'>End Date as Per Project Plan</label>
+            <div className={`col-md-3 mx-sm-4 mx-md-3 ${errorClass}`}>
+              <label className={`form-label ${message.includes('earlier') ? 'error' : ''}`}>
+                End Date as Per Project Plan
+              </label>
               <input
                 type='date'
-                className='form-control p-md-3 p-sm-0'
+                className={`form-control p-md-3 p-sm-0 ${errorClass}`}
                 name='Enddate'
                 value={formData.Enddate}
-                onChange={handleEndDateChange}
+                onChange={handleInputChange}
                 required
               />
-              {endDateError && (
-                <small className='text-danger'>{endDateError}</small>
+              {message && message.includes('earlier') && (
+                <div className='error'>
+                  {message}
+                </div>
               )}
             </div>
             <div className='col-md-3 mx-sm-4 mx-md-3'>
@@ -220,22 +213,12 @@ const CreateProject = () => {
           </div>
           <div className='row mt-4'>
             <div className='col-md-4 end-aligned'>
-              <span>Status</span>: <strong>Registered</strong>
-            </div>
-          </div>
-          <div className='row mt-4'>
-            <div className='col-md-12'>
-              {message && (
-                <div className={message.includes('successfully') ? 'text-success' : 'text-danger'}>
-                  {message}
-                </div>
-              )}
+              <span className='text-gray'>Status</span>: <strong>Registered</strong>
             </div>
           </div>
         </form>
       </div>
     </>
-
   );
 };
 

@@ -19,13 +19,11 @@
      z-index: -1;
    }
 
-   
-   
    .nav-list {
-     display: flex;
      align-items: center;
      width: 100%;
      justify-content: space-between;
+     color: white;
    }
    
    .nav-list > div {
@@ -33,6 +31,16 @@
      color: white;
      z-index: 2;
    }
+
+   .sign{
+    font-weight: 700;
+    font-size: larger;
+   }
+
+  .space{
+    margin-left: 12px;
+    cursor: pointer;
+  }
    
    .project-logo {
      width: 80px;
@@ -65,7 +73,6 @@
      .header-img {
        width: 126%;
        height: auto; 
-
        object-fit: cover;
        top: 0;
        left: 0;
@@ -88,6 +95,7 @@
      .navbar-logout {
        display: block;
        margin-right: -79px;
+       margin-top: -28px;
      }
    }
    

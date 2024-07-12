@@ -25,14 +25,14 @@ const BarChart = () => {
     labels: [],
     datasets: [
       {
-        label: 'Total Projects',
+        label: 'Total',
         backgroundColor: '#0047ab',
         data: [],
         barPercentage: 0.4,
         categoryPercentage: 0.6,
       },
       {
-        label: 'Closed Projects',
+        label: 'Closed',
         backgroundColor: '#04942b',
         data: [],
         barPercentage: 0.4,
@@ -53,7 +53,7 @@ const BarChart = () => {
         },
       },
       title: {
-        display: true,
+        display: false,
         text: 'Department-wise Total vs Closed Projects',
       },
     },

@@ -1,5 +1,4 @@
-// src/layout/Sidebar.js
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import '../styles/Sidebar.css';
 import dashboard from '../assets/images/Dashboard.svg';
 import dashboardActive from '../assets/images/Dashboard-active.svg';
@@ -9,30 +8,41 @@ import projectList from '../assets/images/Project-list.svg';
 import projectListActive from '../assets/images/Project-list-active.svg';
 import logout1 from '../assets/images/logout-1.svg';
 import Navbar from './Navbar';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
   const [pageName, setPageName] = useState('Dashboard');
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const handlePageChange = (newPage) => {
-    setPageName(newPage);
-    setSidebarOpen(false);
-  };
+  // Update active page based on route change
+  React.useEffect(() => {
+    switch (location.pathname) {
+      case '/':
+        setPageName('Dashboard');
+        break;
+      case '/create-project':
+        setPageName('Create Project');
+        break;
+      case '/project-list':
+        setPageName('Project List');
+        break;
+      default:
+        setPageName('Dashboard'); // Default to Dashboard if no match
+        break;
+    }
+  }, [location.pathname]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
-    navigate('/login')
+    localStorage.removeItem('token');
+    navigate('/login');
   };
-
-  
 
   return (
     <div className="dashboard-container">
       <div className="sidebar">
         <div className="main-container">
-          <Link to="/" onClick={() => handlePageChange('Dashboard')}>
+          <Link to="/" className={`sidebar-link ${pageName === 'Dashboard' ? 'active' : ''}`}>
             <img
               className="dash-img"
               src={pageName === 'Dashboard' ? dashboardActive : dashboard}
@@ -40,7 +50,7 @@ const Sidebar = () => {
               style={{ cursor: 'pointer' }}
             />
           </Link>
-          <Link to="/create-project" onClick={() => handlePageChange('Create Project')}>
+          <Link to="/create-project" className={`sidebar-link ${pageName === 'Create Project' ? 'active' : ''}`}>
             <img
               className="create-img"
               src={pageName === 'Create Project' ? createProjectActive : createProject}
@@ -48,8 +58,8 @@ const Sidebar = () => {
               style={{ cursor: 'pointer' }}
             />
           </Link>
-          <div className='border'/>
-          <Link to="/project-list" onClick={() => handlePageChange('Project List')}>
+          <div className="vertical-line"></div> 
+          <Link to="/project-list" className={`sidebar-link ${pageName === 'Project List' ? 'active' : ''}`}>
             <img
               className="project-img"
               src={pageName === 'Project List' ? projectListActive : projectList}
@@ -62,7 +72,7 @@ const Sidebar = () => {
           <img className="sidebar-logout" src={logout1} alt="Log Out" />
         </div>
       </div>
-      <Navbar pageName={pageName}/>
+      <Navbar pageName={pageName} />
     </div>
   );
 };

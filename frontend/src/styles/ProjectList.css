@@ -34,47 +34,33 @@ input-groups {
   transform: translateY(-50%);
 }
 
-.table {
+.btn-status {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
- .table th{
- }
-
-.table th,
-.table td {
-  padding: 8px;
-  text-align: left;
-  vertical-align: top;
-  background-color: skyblue;
-
-  border-top: 1px solid #dee2e6;
+  border: 2px solid #0a529f;
+  color: #0a529f;
+  background-color: white;
+  font-size: 1.2rem;
+  border-radius: 20px;
 }
 
-.table th {
-  background-color: #7199c1;
-  color: #495057;
-  font-weight: bold;
+.btn-default{
+  background-color: #0a529f;
+  color: #ffff;
 }
 
-.table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.table tbody tr:hover {
-  background-color: #f0f0f0;
+.btn-status:hover {
+  background-color: #0a529f;
+  color: #ffff;
 }
 
 @media (max-width: 768px) {
-  
 
   .project-container {
     display: flex;
     flex-direction: column;
     height: 70vh;
     margin-bottom: 20px;
-    transform: translate(0%, 7%);
+    transform: translate(0%, 0%);
     overflow-y: auto;
     position: relative;
   }
@@ -88,9 +74,13 @@ input-groups {
   .form-control {
     margin-right: 8px;
   }
+
+  .text-gray{
+   color: #ccc;
+   margin-left: 30px;
+  }
 }
 
-/* pagination */
 
 .pagination {
   margin-top: 20px;
@@ -129,16 +119,3 @@ input-groups {
   font-size: 18px;
 }
 
-.btn-status {
-  width: 100%;
-  border: 2px solid #0a529f;
-  color: #0a529f;
-  background-color: white;
-  font-size: 1.2rem;
-  border-radius: 20px;
-}
-
-.btn-status:hover {
-  background-color: #0a529f;
-  color: #ffff;
-}

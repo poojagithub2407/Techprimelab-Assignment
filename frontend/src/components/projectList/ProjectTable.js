@@ -27,11 +27,11 @@ const ProjectTable = ({ projects, headers }) => {
         try {
             const updatedProjects = localProjects.map(project => {
                 if (project._id === id) {
-                    return { ...project, Status: status }; 
+                    return { ...project, Status: status };
                 }
                 return project;
             });
-            setLocalProjects(updatedProjects); 
+            setLocalProjects(updatedProjects);
 
             await axios.put(`${BASE_URL}/projects/${id}/status`, { status });
         } catch (error) {
@@ -42,7 +42,7 @@ const ProjectTable = ({ projects, headers }) => {
                 }
                 return project;
             });
-            setLocalProjects(revertedProjects); 
+            setLocalProjects(revertedProjects);
         }
     };
 
@@ -55,14 +55,17 @@ const ProjectTable = ({ projects, headers }) => {
     );
 
     const renderDesktopView = () => (
-        <div className="table-responsive">
+        <div>
             <table className="table">
-                <thead style={{ backgroundColor: 'lightSkyBlue' }}>
+                <thead>
                     <tr>
                         {headers && headers.map((header, index) => (
-                            <th key={index}>{header}</th>
+                            <th
+                                style={{ backgroundColor: 'lightblue' }}
+                                key={index}>{header}</th>
                         ))}
-                        <th>Actions</th>
+                        <th style={{ backgroundColor: 'lightblue' }}
+                        ></th>
                     </tr>
                 </thead>
                 <tbody>

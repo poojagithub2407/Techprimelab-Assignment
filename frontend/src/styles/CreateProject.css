@@ -13,15 +13,28 @@
   background-color: #3880ce;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px;
   margin-top: 30px;
   border-radius: 25px;
   cursor: pointer;
-  width: 50%;
+  width: 40%;
+}
+
+
+label, .text-gray{
+  color: #686666;
 }
 
 .end-aligned {
   margin-left: auto !important;
+}
+
+.error {
+  color: red;
+}
+
+.error-border {
+  border-color: red  !important;
 }
 
 @media (max-width: 768px) {
@@ -30,14 +43,12 @@
     flex-direction: column;
     height: 70vh;
     margin-bottom: 20px;
-    transform: translate(0%, 7%);
     overflow-y: auto;
     position: relative;
   }
-
   .save-button {
     position: absolute;
-    bottom: -505px;
+    bottom: -389px;
     width: 80%;
     text-align: center;
     margin-right: 35px;
