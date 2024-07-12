@@ -102,7 +102,7 @@ const Login = () => {
                 <p className='login-heading'>Login to get started</p>
                 <div className='login-form p-4'>
                     <form onSubmit={handleSubmit}>
-                        <div className='form-group mt-3'>
+                        <div className='form-group'>
                             <label className={`form-label ${errors.email ? 'label-error' : ''}`} htmlFor="email">Email</label>
                             <input
                                 type='email'
