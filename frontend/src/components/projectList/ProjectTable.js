@@ -61,10 +61,9 @@ const ProjectTable = ({ projects, headers }) => {
                     <tr>
                         {headers && headers.map((header, index) => (
                             <th
-                                style={{ backgroundColor: 'lightblue' }}
-                                key={index}>{header}</th>
+                                style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)' }} key={index}>{header}</th>
                         ))}
-                        <th style={{ backgroundColor: 'lightblue' }}
+                        <th style={{ backgroundColor: 'rgba(173, 216, 230, 0.5)' }}
                         ></th>
                     </tr>
                 </thead>

@@ -27,7 +27,7 @@ const ProjectList = () => {
             const response = await axios.get(`${BASE_URL}/projects/projects`, {
                 params: {
                     searchTerm,
-                    sortBy: sortBy.toLowerCase(), // Ensure sortBy is lowercased to match backend field names
+                    sortBy: sortBy.toLowerCase(), 
                     sortOrder,
                     page,
                     limit: 6
@@ -60,6 +60,7 @@ const ProjectList = () => {
     };
 
     const headers = ['Project', 'Reason', 'Type', 'Division', 'Category', 'Priority', 'Department', 'Location', 'Status'];
+    const sortableFields = ['Project Theme', 'Reason', 'Division', 'Category', 'Priority', 'Department', 'Location'];
 
     const handlePageChange = (newPage) => {
         setPage(newPage);
@@ -82,7 +83,7 @@ const ProjectList = () => {
                         <SortBySelect
                             field={sortBy}
                             handleSortChange={handleSortChange}
-                            headers={headers} 
+                            headers={sortableFields} 
                         />
                     </div>
                 </div>

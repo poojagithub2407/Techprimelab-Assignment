@@ -5,7 +5,7 @@ import Dashboard from './components/Dashboard';
 import CreateProject from './components/CreateProject';
 import ProjectList from './pages/ProjectList';
 import PrivateRoutes from './context/PrivateRoutes';import PublicRoutes from './context/PublicRoutes';
-
+import './App.css'
 const App = () => {
   return (
     <Router>
