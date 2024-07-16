@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import BASE_URL from '../api/api';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +11,6 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import BASE_URL from '../api/api';
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +23,6 @@ ChartJS.register(
 
 const BarChart = () => {
   const [data, setData] = useState({
-    labels: [],
     datasets: [
       {
         label: 'Total',
@@ -97,12 +97,12 @@ const BarChart = () => {
         }
         const responseData = await response.json();
 
-        const labels = responseData.departmentCounts.map(item => item.department);
+        // const labels = responseData.departmentCounts.map(item => item.department);
         const totalProjects = responseData.departmentCounts.map(item => item.totalProjects);
         const closedProjects = responseData.departmentCounts.map(item => item.closedProjects);
 
         setData(prevData => ({
-          labels: labels,
+          labels: ['FIN','STR','QLT','MAN'],
           datasets: [
             {
               ...prevData.datasets[0],
