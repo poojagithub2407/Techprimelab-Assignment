@@ -1,4 +1,3 @@
-// src/layout/Navbar.js
 import React from 'react';
 import '../styles/Navbar.css';
 import headerBg from '../assets/images/Header-bg.svg';
@@ -6,7 +5,7 @@ import projectLogo from '../assets/images/Logo.svg';
 import logout1 from '../assets/images/Logout.svg';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = ({ pageName, toggleSidebar }) => {
+const Navbar = ({ pageName }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {

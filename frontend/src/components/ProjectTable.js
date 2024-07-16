@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MobileProjectCard from './MobileProjectCard';
 import DesktopProjectRow from './DesktopProjectRow';
-import '../../styles/CardView.css';
-import BASE_URL from '../../api/api';
+import '../styles/CardView.css';
+import BASE_URL from '../api/api';
 
 const ProjectTable = ({ projects, headers }) => {
     const [isMobileView, setIsMobileView] = useState(false);

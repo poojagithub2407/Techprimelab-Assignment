@@ -22,7 +22,6 @@
 .login-logo {
   max-width: 100px;
   margin-bottom: 10px;
-  border-radius: 50%; 
 }
 
 .login-title {
@@ -124,8 +123,8 @@
 
   .login-header {
     width: 221%;
-    height: 39vh;
-    object-fit: cover;
+    height: 43vh;
+    position: fixed;
   }
   .login-heading {
     margin-top: 16px;
@@ -148,7 +147,7 @@
 
   .login-container {
     position: absolute;
-    top: 65%;
+    top: 68%;
     left: 50%;
     width: 90%;
     max-width: 400px;

@@ -1,63 +1,81 @@
 .container {
-     max-width: 100%;
-     padding: 0;
-   }
-   
-   .d-flex {
-     display: flex;
-   }
-   
-   .justify-content-between {
-     justify-content: space-between;
-   }
-   
-   .box {
-     height: 100px;
-     background-color: #fcfcfd;
-     border-radius: 5px;
-     flex: 1;
-     margin: 0 10px;
-     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-     border-left: 10px solid #87ceeb; 
-   }
-   
-   .closed {
-     margin-top: 10px;
-     font-size: 18px;
-     font-weight: bold;
-     color: #333;
-   }
-   
-   .chart-container {
-    width: 50%;
-    height: 60vh;
-    background-color: #fcfcfd;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+  max-width: 100%;
+  padding: 0;
+}
+
+.box-container {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.box {
+  width: calc(33.33% - 20px); 
+  min-width: 200px;
+  background-color: #fcfcfd;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-left: 10px solid #87ceeb;
+  margin-right: 20px; 
+  padding: 10px; 
+  transition: all 0.3s ease; 
+}
+
+.box:last-child {
+  margin-right: 0;
+}
+
+.closed {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.chart-container {
+  width: 50%;
+  height: 60vh;
+  background-color: #fcfcfd;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    overflow-y: auto;
   }
- 
-   
-   
-   @media (max-width: 768px) {
-    .container{
-      overflow-y:auto ;
-    }
-     .box:nth-child(n + 4) {
-       display: none;
-     }
-     .d-flex {
-       justify-content: center;
-     }
-   
-     .chart-container {
-       width: 100%;
-       height: 50vh;
-     }
-   
-     .chart {
-       width: 100%; 
-       height: 49vh;
-     }
-   }
-   
+
+  .box-container {
+    justify-content: flex-start;
+    flex-wrap: nowrap; 
+    overflow-x: auto;
+    padding-bottom: 0; 
+    margin-bottom: 20px; 
+    scroll-snap-type: x mandatory; 
+  }
+
+  .box {
+    width: calc(45% - 20px); 
+    min-width: auto;
+    margin-right: 20px; 
+    flex: 0 0 auto; 
+    scroll-snap-align: start;
+  }
+
+  .box:last-child {
+    margin-right: 0; 
+
+  }
+
+  .chart-container {
+    width: 100%;
+    height: 50vh;
+  }
+
+  .chart {
+    width: 100%; 
+    height: 49vh;
+  }
+}

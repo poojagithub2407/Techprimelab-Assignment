@@ -56,9 +56,7 @@ input-groups {
 @media (max-width: 768px) {
 
   .project-container {
-    display: flex;
-    flex-direction: column;
-    height: 70vh;
+    height: 78vh;
     margin-bottom: 20px;
     transform: translate(0%, 0%);
     overflow-y: auto;

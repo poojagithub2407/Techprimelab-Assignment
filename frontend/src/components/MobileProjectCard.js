@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/ProjectList.css';
+import '../styles/ProjectList.css';
 
 const MobileProjectCard = ({ project, updateStatus }) => (
     <div className="card p-2 mb-2 border-0">

@@ -46,36 +46,26 @@ const Dashboard = () => {
     <>
       <Sidebar />
       <div className="container my-3">
-        <div className="d-flex justify-content-between">
-          <div className="box mx-2  p-3">
-            <div style={{ fontWeight: 'bold' }}>
-              <p>Total Projects</p>
-              <h4>{counts.totalProjects}</h4>
-            </div>
+        <div className=" box-container d-flex justify-content-between">
+          <div className="box">
+              <small  style={{color:'gray'}}>Total Projects</small>
+              <p style={{ fontWeight: 'bold' }}>{counts.totalProjects}</p>
           </div>
-          <div className="box mx-2  p-3">
-            <div style={{ fontWeight: 'bold' }}>
-              <p>Closed</p>
-              <h4>{counts.closedProjects}</h4>
-            </div>
+          <div className="box">
+              <small style={{color:'gray'}}>Closed</small>
+              <p style={{ fontWeight: 'bold' }}>{counts.closedProjects}</p>
           </div>
-          <div className="box mx-2  p-3">
-            <div style={{ fontWeight: 'bold' }}>
-              <p>Running</p>
-              <h4>{counts.runningProjects}</h4>
-            </div>
+          <div className="box">
+              <small style={{color:'gray'}}>Running</small>
+              <p style={{ fontWeight: 'bold' }}>{counts.runningProjects}</p>
           </div>
-          <div className="box mx-2  p-3">
-            <div style={{ fontWeight: 'bold' }}>
-              <p>Overdue Running</p>
-              <h4>{counts.overdueRunningProjects}</h4>
-            </div>
+          <div className="box">
+              <small style={{color:'gray'}}>Overdue Running</small>
+              <p style={{ fontWeight: 'bold' }}>{counts.overdueRunningProjects}</p>
           </div>
-          <div className="box mx-2 p-3">
-            <div style={{ fontWeight: 'bold' }}>
-              <p>Cancelled</p>
-              <h4>{counts.cancelledProjects}</h4>
-            </div>
+          <div className="box">
+              <small>Cancelled</small>
+              <p style={{ fontWeight: 'bold' }}>{counts.cancelledProjects}</p>
           </div>
         </div>
         <div>

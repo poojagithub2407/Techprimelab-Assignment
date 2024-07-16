@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/ProjectList.css';
+import '../styles/ProjectList.css';
 
 const DesktopProjectRow = ({ project, updateStatus }) => (
     <tr>
@@ -26,7 +26,9 @@ const DesktopProjectRow = ({ project, updateStatus }) => (
         <td>{project.Priority}</td>
         <td>{project.Department}</td>
         <td>{project.Location}</td>
-        <td>{project.Status}</td>
+        <td>
+            <strong>{project.Status}</strong>
+        </td>
         <td>
             <div className='d-flex align-items-center justify-content-between gap-2'>
                 <button

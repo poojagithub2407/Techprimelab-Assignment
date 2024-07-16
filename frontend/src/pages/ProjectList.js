@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/ProjectList.css'; // Import custom CSS
-import ProjectTable from '../components/projectList/ProjectTable';
-import SearchBar from '../components/projectList/SearchBar'; // Import the SearchBar component
-import SortBySelect from '../components/projectList/SortBySelect'; // Import the SortBySelect component
-import Pagination from '../components/projectList/Pagination'; // Import the Pagination component
+import ProjectTable from '../components/ProjectTable';
+import SearchBar from '../components/SearchBar';
+import SortBySelect from '../components/SortBySelect';
+import Pagination from '../components/Pagination';
 import BASE_URL from '../api/api';
 import Sidebar from '../layout/Sidebar';
 
@@ -27,7 +27,7 @@ const ProjectList = () => {
             const response = await axios.get(`${BASE_URL}/projects/projects`, {
                 params: {
                     searchTerm,
-                    sortBy: sortBy.toLowerCase(), 
+                    sortBy: sortBy.toLowerCase(),
                     sortOrder,
                     page,
                     limit: 6
@@ -55,7 +55,8 @@ const ProjectList = () => {
     const handleSortChange = (e) => {
         const selectedSortBy = e.target.value;
         setSortBy(selectedSortBy);
-        setSortOrder(prevSortOrder => (prevSortOrder === 'asc' ? 'desc' : 'asc'));
+        setSortOrder(prevSortOrder =>
+            (prevSortOrder === 'asc' ? 'desc' : 'asc'));
         setPage(1);
     };
 
@@ -83,7 +84,7 @@ const ProjectList = () => {
                         <SortBySelect
                             field={sortBy}
                             handleSortChange={handleSortChange}
-                            headers={sortableFields} 
+                            headers={sortableFields}
                         />
                     </div>
                 </div>

@@ -45,10 +45,9 @@ const getAllProjects = async (req, res) => {
         const totalDocuments = await Project.countDocuments(filter);
         const projects = await Project.find(filter).sort(sortCriteria).skip(skip).limit(parseInt(limit));
 
-        // Format dates
         const formattedProjects = projects.map(project => {
             return {
-                ...project._doc, // _doc contains the document data
+                ...project._doc, 
                 createdAt: formatDate(project.createdAt),
                 updatedAt: formatDate(project.updatedAt)
             };

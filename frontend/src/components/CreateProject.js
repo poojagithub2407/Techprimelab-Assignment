@@ -61,7 +61,7 @@ const CreateProject = () => {
   return (
     <>
       <Sidebar />
-      <div className='container create-container'>
+      <div className=' create-container'>
         <form onSubmit={handleSubmit}>
           <div className='row mt-sm-0'>
             <div className='col-md-8 col-sm-2 mt-md-5 mt-sm-1'>
@@ -123,7 +123,7 @@ const CreateProject = () => {
               </select>
             </div>
           </div>
-          <div className='row mt-4'>
+          <div className='row mt-4 mt-sm-0'>
             <div className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Category</label>
               <select
@@ -166,7 +166,7 @@ const CreateProject = () => {
               </select>
             </div>
           </div>
-          <div className='row mt-4'>
+          <div className='row mt-4 mt-sm-0'>
             <div className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Start Date as per Project Plan</label>
               <input
@@ -211,8 +211,8 @@ const CreateProject = () => {
               </select>
             </div>
           </div>
-          <div className='row mt-4'>
-            <div className='col-md-4 end-aligned'>
+          <div className='row mt-4 mt-sm-0'>
+            <div className='col-md-4 col-sm-0 end-aligned'>
               <span className='text-gray'>Status</span>: <strong>Registered</strong>
             </div>
           </div>

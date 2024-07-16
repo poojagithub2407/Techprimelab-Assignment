@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Sidebar.css';
 import dashboard from '../assets/images/Dashboard.svg';
 import dashboardActive from '../assets/images/Dashboard-active.svg';
@@ -15,8 +15,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Update active page based on route change
-  React.useEffect(() => {
+  useEffect(() => {
     switch (location.pathname) {
       case '/':
         setPageName('Dashboard');
@@ -28,7 +27,7 @@ const Sidebar = () => {
         setPageName('Project List');
         break;
       default:
-        setPageName('Dashboard'); // Default to Dashboard if no match
+        setPageName('Dashboard');
         break;
     }
   }, [location.pathname]);
@@ -44,32 +43,34 @@ const Sidebar = () => {
         <div className="main-container">
           <Link to="/" className={`sidebar-link ${pageName === 'Dashboard' ? 'active' : ''}`}>
             <img
-              className="dash-img"
               src={pageName === 'Dashboard' ? dashboardActive : dashboard}
               alt="Dashboard"
               style={{ cursor: 'pointer' }}
             />
           </Link>
-          <Link to="/create-project" className={`sidebar-link ${pageName === 'Create Project' ? 'active' : ''}`}>
+          <Link to="/create-project"
+            className={`sidebar-link ${pageName === 'Create Project' ? 'active' : ''}`}>
             <img
-              className="create-img"
               src={pageName === 'Create Project' ? createProjectActive : createProject}
               alt="Create Project"
               style={{ cursor: 'pointer' }}
             />
           </Link>
-          <div className="vertical-line"></div> 
-          <Link to="/project-list" className={`sidebar-link ${pageName === 'Project List' ? 'active' : ''}`}>
+          <div className="vertical-line"></div>
+          <Link to="/project-list"
+            className={`sidebar-link ${pageName === 'Project List' ? 'active' : ''}`}>
             <img
-              className="project-img"
               src={pageName === 'Project List' ? projectListActive : projectList}
               alt="Project List"
               style={{ cursor: 'pointer' }}
             />
           </Link>
         </div>
-        <div className="logout-container" onClick={handleLogout} style={{ cursor: 'pointer' }}>
-          <img className="sidebar-logout" src={logout1} alt="Log Out" />
+        <div className="logout-container"
+          onClick={handleLogout}
+          style={{ cursor: 'pointer' }}>
+          <img className="sidebar-logout"
+            src={logout1} alt="Log Out" />
         </div>
       </div>
       <Navbar pageName={pageName} />

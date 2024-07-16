@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const jwtSecret = 'your_jwt_secret'; // Replace with your actual secret
+const jwtSecret = 'poojaDayal'; 
 
 function generateToken(user) {
     const payload = { user: { id: user._id } };

@@ -1,4 +1,3 @@
-// src/utils/authenticateToken.js
 const { verifyToken } = require('./jwtUtils');
 
 function authenticateToken(req, res, next) {

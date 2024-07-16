@@ -2,7 +2,7 @@ const Project = require('../models/Project');
 
 const chartProject = async (req, res) => {
      try {
-         const departments = ['Finance', 'Strategy', 'Quality', 'Maintenance']; // Example departments
+         const departments = ['Finance', 'Strategy', 'Quality', 'Maintenance'];
  
          const promises = departments.map(async (department) => {
              const totalProjects = await Project.countDocuments({ Department: department });
