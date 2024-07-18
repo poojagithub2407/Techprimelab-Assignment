@@ -44,7 +44,7 @@ const Login = () => {
                 setLoginMessage('Invalid Credentials.');
                 resetForm();
             } else {
-                console.log('Login successful:', data);
+                // console.log('Login successful:', data);
                 localStorage.setItem('token', JSON.stringify(data.token));
 
                 navigate('/');
@@ -103,28 +103,33 @@ const Login = () => {
                 <div className='login-form p-4'>
                     <form onSubmit={handleSubmit}>
                         <div className='form-group'>
-                            <label className={`form-label ${errors.email ? 'label-error' : ''}`} htmlFor="email">Email</label>
+                            <label
+                                className={`form-label ${errors.email ? 'label-error' : ''}`}
+                                htmlFor="email">Email</label>
                             <input
                                 type='email'
                                 id='email'
                                 className={`form-control ${errors.email ? 'invalid' : ''}`}
                                 value={email}
-                                onChange={handleEmailChange} 
+                                onChange={handleEmailChange}
                             />
                             {errors.email &&
                                 <div className="invalid-feedback">{errors.email}</div>}
                         </div>
                         <div className="form-group mt-3">
-                        <label className={`form-label ${errors.password ? 'label-error' : ''}`} htmlFor="password">Password</label>
-                        <div className="input-group">
+                            <label className={`form-label ${errors.password ?
+                                'label-error' : ''}`}
+                                htmlFor="password">Password</label>
+                            <div className="input-group">
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     className={`form-control ${errors.password ? 'invalid' : ''}`}
                                     id="password"
                                     value={password}
-                                    onChange={handlePasswordChange} 
+                                    onChange={handlePasswordChange}
                                 />
-                                <div className="input-icon" onClick={togglePasswordVisibility}>
+                                <div className="input-icon"
+                                 onClick={togglePasswordVisibility}>
                                     <i className={showPassword ? 'fa fa-eye-slash' : 'fa fa-eye'}></i>
                                 </div>
                             </div>

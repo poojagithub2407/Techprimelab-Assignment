@@ -9,13 +9,16 @@ const DesktopProjectRow = ({ project, updateStatus }) => (
             </div>
             <div>
                 <small>
-                    {new Date(project.Startdate)
+                    {/* {new Date(project.Startdate)
                         .toLocaleDateString('en-US',
-                            { month: 'long', day: 'numeric', year: 'numeric' })}
+                            { month: 'long', day: 'numeric', year: 'numeric' })} */}
+                            {project.Startdate}
                     &nbsp;to&nbsp;
-                    {new Date(project.Enddate)
+                    {/* {new Date(project.Enddate)
                         .toLocaleDateString('en-US',
-                            { month: 'long', day: 'numeric', year: 'numeric' })}
+                            { month: 'long', day: 'numeric', year: 'numeric' })} */}
+                            {project.Enddate}
+
                 </small>
             </div>
         </td>

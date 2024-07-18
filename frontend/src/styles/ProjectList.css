@@ -61,6 +61,7 @@ input-groups {
     position: fixed;
     width: 92%;
     margin-left: 15px;
+    box-shadow: none;
   }
 
   .input-groups {

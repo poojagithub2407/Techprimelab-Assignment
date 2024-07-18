@@ -8,6 +8,7 @@
   justify-content: flex-start;
   overflow-x: auto;
   padding-bottom: 20px;
+  overflow: hidden;
 }
 
 .box {

@@ -33,7 +33,8 @@ const getAllProjects = async (req, res) => {
 
         let sortCriteria = {};
 
-        const sortableFields = ['Project Theme', 'Reason', 'Division', 'Category', 'Priority', 'Department', 'Location'];
+        const sortableFields = ['Projecttheme', 'Reason', 'Division',
+            'Category', 'Priority', 'Department', 'Location'];
 
         if (sortBy && sortableFields.includes(sortBy)) {
             sortCriteria[sortBy] = sortOrder === 'desc' ? -1 : 1;
@@ -43,12 +44,15 @@ const getAllProjects = async (req, res) => {
 
         const skip = (page - 1) * limit;
         const totalDocuments = await Project.countDocuments(filter);
-        const projects = await Project.find(filter).sort(sortCriteria).skip(skip).limit(parseInt(limit));
+        const projects = await Project.find(filter)
+                       .sort(sortCriteria)
+                       .skip(skip).limit(parseInt(limit));
 
         const formattedProjects = projects.map(project => {
             return {
-                ...project._doc, 
-                createdAt: formatDate(project.createdAt),
+                ...project._doc,
+                Startdate: formatDate(project.Startdate),
+                Enddate: formatDate(project.Enddate),
                 updatedAt: formatDate(project.updatedAt)
             };
         });

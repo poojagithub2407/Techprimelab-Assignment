@@ -69,9 +69,9 @@ const CreateProject = () => {
   return (
     <>
       <Sidebar />
-      <div className='create-container'>
+      <main className='create-container'>
         <form onSubmit={handleSubmit}>
-          <div className='row mt-sm-0'>
+          <section className='row mt-sm-0'>
             <div className='col-md-6 col-sm-12 mt-md-4 mt-sm-2 mx-sm-4 mx-md-3'>
               <textarea
                 className={`form-control ${themeError ? 'error-border' : ''}`}
@@ -87,10 +87,10 @@ const CreateProject = () => {
                 Save Project
               </button>
             </div>
-          </div>
+          </section>
 
-          <div className='row mt-md-5'>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+          <section className='row mt-md-5'>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Reason</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -102,8 +102,8 @@ const CreateProject = () => {
                 <option>DealerShip</option>
                 <option>Transport</option>
               </select>
-            </div>
-            <div className='col-md-3 mx-sm-4 mx-md-3 '>
+            </article>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Type</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -115,8 +115,8 @@ const CreateProject = () => {
                 <option>External</option>
                 <option>Vendor</option>
               </select>
-            </div>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+            </article>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Division</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -130,11 +130,11 @@ const CreateProject = () => {
                 <option>Compress</option>
                 <option>Water Heater</option>
               </select>
-            </div>
-          </div>
+            </article>
+          </section>
 
-          <div className='row mt-md-4 mt-sm-0'>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+          <section className='row mt-md-4 mt-sm-0'>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Category</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -147,8 +147,8 @@ const CreateProject = () => {
                 <option>Quality C</option>
                 <option>Quality D</option>
               </select>
-            </div>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+            </article>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Priority</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -160,8 +160,8 @@ const CreateProject = () => {
                 <option>Medium</option>
                 <option>Low</option>
               </select>
-            </div>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+            </article>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Department</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -174,11 +174,11 @@ const CreateProject = () => {
                 <option>Quality</option>
                 <option>Maintenance</option>
               </select>
-            </div>
-          </div>
+            </article>
+          </section>
 
-          <div className='row mt-md-4 mt-sm-0'>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+          <section className='row mt-md-4 mt-sm-0'>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Start Date as per Project Plan</label>
               <input
                 type='date'
@@ -186,10 +186,9 @@ const CreateProject = () => {
                 name='Startdate'
                 value={formData.Startdate}
                 onChange={handleInputChange}
-
               />
-            </div>
-            <div className={`col-md-3 mx-sm-4 mx-md-3 ${errorClass}`}>
+            </article>
+            <article className={`col-md-3 mx-sm-4 mx-md-3 ${errorClass}`}>
               <label className='form-label'>End Date as Per Project Plan</label>
               <input
                 type='date'
@@ -197,15 +196,14 @@ const CreateProject = () => {
                 name='Enddate'
                 value={formData.Enddate}
                 onChange={handleInputChange}
-
               />
               {message && (
                 <div className='error'>
                   {message}
                 </div>
               )}
-            </div>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+            </article>
+            <article className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Location</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -218,16 +216,16 @@ const CreateProject = () => {
                 <option>Bangalore</option>
                 <option>Hyderabad</option>
               </select>
-            </div>
-          </div>
+            </article>
+          </section>
 
-          <div className='row mt-4 mt-sm-0'>
+          <section className='row mt-4 mt-sm-0'>
             <div className='col-md-4 col-sm-0 end-aligned'>
               <span className='text-gray'>Status</span>: <strong>Registered</strong>
             </div>
-          </div>
+          </section>
         </form>
-      </div>
+      </main>
     </>
   );
 };

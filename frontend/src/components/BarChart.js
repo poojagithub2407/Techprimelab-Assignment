@@ -41,7 +41,6 @@ const BarChart = () => {
     ],
   });
 
-
   const options = {
     responsive: true,
     maintainAspectRatio: true,
@@ -97,7 +96,6 @@ const BarChart = () => {
         }
         const responseData = await response.json();
 
-        // const labels = responseData.departmentCounts.map(item => item.department);
         const totalProjects = responseData.departmentCounts.map(item => item.totalProjects);
         const closedProjects = responseData.departmentCounts.map(item => item.closedProjects);
 
@@ -123,11 +121,11 @@ const BarChart = () => {
   }, []);
 
   return (
-    <div className="chart-container">
+    <section className="chart-container">
       <div className="chart">
         <Bar data={data} options={options} />
       </div>
-    </div>
+    </section>
   );
 };
 

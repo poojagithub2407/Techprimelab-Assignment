@@ -19,7 +19,7 @@ const MobileProjectCard = ({ project, updateStatus }) => (
                 </div>
             </div>
             <strong
-                className="font-weight-normal mt-0">
+                className="font-weight-normal mb-4">
                 {project.Status}
             </strong>
         </div>
