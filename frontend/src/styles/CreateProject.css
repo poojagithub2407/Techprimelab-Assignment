@@ -2,9 +2,9 @@
   width: 90%;
   height: 85vh;
   background-color: white;
-  margin: 0 11px;
+  margin: 5px 100px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
 }
@@ -17,11 +17,12 @@
   margin-top: 30px;
   border-radius: 25px;
   cursor: pointer;
-  width: 40%;
+  width: 50%;
+  margin-left: 230px;
 }
 
-
-label, .text-gray{
+label,
+.text-gray {
   color: #686666;
 }
 
@@ -34,26 +35,34 @@ label, .text-gray{
 }
 
 .error-border {
-  border-color: red  !important;
+  border-color: red !important;
 }
 
 @media (max-width: 768px) {
   .create-container {
-    width: 94%  !important;
-    height: 75vh;
+    width: 94% !important;
+    height: 73vh;
     overflow-y: auto;
-    position: relative;
+    position: fixed;
     padding: 23px 15px;
-    margin: 10px;    
+    margin: 10px;
+    padding-bottom: 62px;
   }
+
+  .row:last-child {
+    margin-top: 20px;
+  }
+
   .save-button {
-    position: absolute;
-    top: 164%;
     width: 80%;
     text-align: center;
-    margin-right: 30px;
+    margin: 8px auto;
     cursor: pointer;
-    padding: 5px;
+    padding: 6px;
+    margin-left: 14px;
+    margin-right: auto;
+    position: absolute;
+    top: 156%;
   }
 
   .end-aligned {

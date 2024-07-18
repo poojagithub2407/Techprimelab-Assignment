@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import {  useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import '../styles/CreateProject.css';
 import BASE_URL from '../api/api';
 import Sidebar from './../layout/Sidebar';
@@ -22,23 +22,33 @@ const CreateProject = () => {
   const [formData, setFormData] = useState(initialFormData);
   const [message, setMessage] = useState('');
   const [errorClass, setErrorClass] = useState('');
-  const navigate = useNavigate(); 
+  const [themeError, setThemeError] = useState('');
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    
+
     if (message !== '') {
       setMessage('');
       setErrorClass('');
+    }
+
+    if (themeError !== '') {
+      setThemeError('');
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.Projecttheme.trim()) {
+      setThemeError('Project theme is required');
+      return;
+    }
+
     if (new Date(formData.Enddate) < new Date(formData.Startdate)) {
-      setMessage('End Date is  ');
+      setMessage('End date cannot be greater than start date');
       setErrorClass('error-border');
       return;
     }
@@ -47,9 +57,7 @@ const CreateProject = () => {
       const response = await axios.post(`${BASE_URL}/projects/create`, formData);
 
       if (response.status === 201) {
-        setMessage('Project created successfully!');
         setFormData(initialFormData);
-        setErrorClass('');
         navigate('/project-list');
       }
     } catch (error) {
@@ -61,26 +69,27 @@ const CreateProject = () => {
   return (
     <>
       <Sidebar />
-      <div className=' create-container'>
+      <div className='create-container'>
         <form onSubmit={handleSubmit}>
           <div className='row mt-sm-0'>
-            <div className='col-md-8 col-sm-2 mt-md-5 mt-sm-1'>
+            <div className='col-md-6 col-sm-12 mt-md-4 mt-sm-2 mx-sm-4 mx-md-3'>
               <textarea
-                className='form-control'
+                className={`form-control ${themeError ? 'error-border' : ''}`}
                 placeholder='Enter Project Theme'
                 name='Projecttheme'
                 value={formData.Projecttheme}
                 onChange={handleInputChange}
-                required
               ></textarea>
+              {themeError && <div className='error'>{themeError}</div>}
             </div>
-            <div className='col-md-4 col-sm-2 d-flex align-items-end justify-content-end mb-4'>
+            <div className='col-md-4 col-sm-12'>
               <button type='submit' className='save-button'>
                 Save Project
               </button>
             </div>
           </div>
-          <div className='row mt-md-4 mt-sm-0'>
+
+          <div className='row mt-md-5'>
             <div className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Reason</label>
               <select
@@ -94,7 +103,7 @@ const CreateProject = () => {
                 <option>Transport</option>
               </select>
             </div>
-            <div className='col-md-3 mx-sm-4 mx-md-3'>
+            <div className='col-md-3 mx-sm-4 mx-md-3 '>
               <label className='form-label'>Type</label>
               <select
                 className='form-select p-md-3 p-sm-0'
@@ -123,7 +132,8 @@ const CreateProject = () => {
               </select>
             </div>
           </div>
-          <div className='row mt-4 mt-sm-0'>
+
+          <div className='row mt-md-4 mt-sm-0'>
             <div className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Category</label>
               <select
@@ -166,7 +176,8 @@ const CreateProject = () => {
               </select>
             </div>
           </div>
-          <div className='row mt-4 mt-sm-0'>
+
+          <div className='row mt-md-4 mt-sm-0'>
             <div className='col-md-3 mx-sm-4 mx-md-3'>
               <label className='form-label'>Start Date as per Project Plan</label>
               <input
@@ -175,22 +186,20 @@ const CreateProject = () => {
                 name='Startdate'
                 value={formData.Startdate}
                 onChange={handleInputChange}
-                required
+
               />
             </div>
             <div className={`col-md-3 mx-sm-4 mx-md-3 ${errorClass}`}>
-              <label className={`form-label ${message.includes('earlier') ? 'error' : ''}`}>
-                End Date as Per Project Plan
-              </label>
+              <label className='form-label'>End Date as Per Project Plan</label>
               <input
                 type='date'
                 className={`form-control p-md-3 p-sm-0 ${errorClass}`}
                 name='Enddate'
                 value={formData.Enddate}
                 onChange={handleInputChange}
-                required
+
               />
-              {message && message.includes('earlier') && (
+              {message && (
                 <div className='error'>
                   {message}
                 </div>
@@ -211,6 +220,7 @@ const CreateProject = () => {
               </select>
             </div>
           </div>
+
           <div className='row mt-4 mt-sm-0'>
             <div className='col-md-4 col-sm-0 end-aligned'>
               <span className='text-gray'>Status</span>: <strong>Registered</strong>

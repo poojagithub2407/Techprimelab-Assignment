@@ -8,18 +8,23 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = ({ pageName }) => {
   const navigate = useNavigate();
 
+  const handleBack = () => {
+    navigate(-1); // Navigate back to the previous page
+  };
+
   const handleLogout = () => {
-    localStorage.removeItem('token')
-    navigate('/login')
+    localStorage.removeItem('token');
+    navigate('/login');
   };
 
   return (
     <div className='nav-container'>
       <img className='header-img' src={headerBg} alt='Header Background' />
-      <div className='nav-list'>  <div >
-        <span className='sign'>{'<'}</span>
-        <span className='space'>{pageName}</span>
-      </div>
+      <div className='nav-list'>
+        <div onClick={handleBack} style={{ cursor: 'pointer' }}>
+          <span className='sign'>{'<'}</span>
+          <span className='space'>{pageName}</span>
+        </div>
         <div className='logo-container'>
           <img src={projectLogo} alt='project-logo' className='project-logo' />
         </div>

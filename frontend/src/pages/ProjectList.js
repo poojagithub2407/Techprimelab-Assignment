@@ -70,7 +70,7 @@ const ProjectList = () => {
     return (
         <>
             <Sidebar />
-            <div className="container project-container">
+            <div className=" project-container">
                 <div className="p-4 rounded d-flex align-items-center justify-content-between">
                     <div className="mr-md-auto  mr-sm-0">
                         <SearchBar

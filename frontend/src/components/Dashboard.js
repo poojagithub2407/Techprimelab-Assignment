@@ -64,7 +64,7 @@ const Dashboard = () => {
               <p style={{ fontWeight: 'bold' }}>{counts.overdueRunningProjects}</p>
           </div>
           <div className="box">
-              <small>Cancelled</small>
+              <small style={{color:'gray'}}>Cancelled</small>
               <p style={{ fontWeight: 'bold' }}>{counts.cancelledProjects}</p>
           </div>
         </div>
